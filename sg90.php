@@ -37,12 +37,14 @@ class StyleGuideCreator {
 	}
 
 	public function _sg_box( $sg_boxTitle, $sg_metaHTML, $sg_feHTML ) {
-		
+		//add_meta_box( $sg_boxTitle, __( $sg_boxTitle, 'myplugin_textdomain' ), function() { echo $sg_metaHTML; }, 'style-guides', 'normal', 'high' );
 	}
 	
 }
 
-new StyleGuideCreator();
+$sg90 = new StyleGuideCreator();
+
+$sg90->_sg_box( 'Testing', '<p>hi</p>', '' );
 
 function get_attach_id( $url ) {
 	$parsed_url  = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );
