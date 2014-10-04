@@ -4,9 +4,11 @@ class styleGuideShortcodes {
 	
 	function __construct() {
 		add_shortcode( 'sg-90', array( $this, 'sgShortcode' ) );
+		
 	}
 	
 	function sgShortcode( $atts ) {
+		global $sg90_shortcode_html;
 
 		$a = shortcode_atts( array(
 			'id' => ''
@@ -17,8 +19,17 @@ class styleGuideShortcodes {
 		$sg = get_post( intval( $a['id'] ) );
 		
 		if( $sg && $sg->post_type == 'style-guides' ) :
-
-			return '<p>Here</p>';
+			
+			//var_dump( StyleGuideCreatorAgain::$sg_instances );
+			
+			$output = '';
+			
+			foreach( StyleGuideCreatorAgain::$sg_instances as $sg_instance ) {
+				$output .= $sg_instance->view( $sg->ID );
+			}
+			
+			return $output;
+			
 			
 		else:
 			

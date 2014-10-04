@@ -15,36 +15,92 @@ define( 'SG60_PLUGINURL', plugins_url( '', __FILE__ ) );
 require('includes/classes/sg_cpt_tax.php');
 require('includes/admin/settings.php');
 require('includes/admin/shortcodes.php');
-//require('includes/admin/meta.php');
-
 
 class StyleGuideCreator {
+	/* TURN ON WP_DEBUG in your wp-config.php to view debugging meta box */
 	
-	function __construct(){
-		global $wpdb;
+	public $sg_post;
+	public $sg_title  = 'New Box';
+	public static $sg_instances = [];
+
+	/*
+		IF YOU MODIFY THE CONSTRUCT FUNCTION MAKE SURE TO CALL
+			parent::__construct();	
+			
+	*/
+
+	function __construct(){			
+		array_push( $this::$sg_instances, $this );
+
+		if( isset( $_GET['post'] ) ) {
+			$this->sg_post = $_GET['post'];
+		}
 		
-		new sgInit();
-		new styleAdmin();
-		new styleGuideShortcodes();
+		add_action( 'add_meta_boxes', array( $this, '_metaInit' ) );
 		
-		// SAVE
-		add_action( 'save_post', array( $this, 'metaSave' ) );
+		if( WP_DEBUG && get_post_meta( $this->sg_post ) ) {
+			add_action( 'add_meta_boxes', array( $this, '_allMetaInit' ) );
+		}
 	}
 
-	private function save() {
-		// if( 'style-guides' == get_post_type( $post_id ) && !empty( $_POST ) ):
-		// endif;
-	}
-
-	public function _sg_box( $sg_boxTitle, $sg_metaHTML, $sg_feHTML ) {
-		//add_meta_box( $sg_boxTitle, __( $sg_boxTitle, 'myplugin_textdomain' ), function() { echo $sg_metaHTML; }, 'style-guides', 'normal', 'high' );
+	/* OVERWRITE FOR ADMIN CODE */
+	public function admin( $post ) {
+		echo '<h3>New Meta Box</h3>';
 	}
 	
+	/* OVERWRITE FOR FRONT END CODE */
+	public function view( $sg_post_id ) {
+		return '<h2>'.$sg_post_id.'</h2>';
+	}
+	
+	
+	
+	/*
+	
+	DO NOT OVERWRITE FUNCTIONS BELOW
+	
+	*/
+
+	public function _allMetaInit() {
+		add_meta_box( 
+			'AllMeta', 
+			__( 'AllMeta', 'myplugin_textdomain' ), 
+			array( $this, '_sg_allmeta' ), 
+			'style-guides', 
+			'normal', 
+			'low' 
+		);	
+	}
+
+	public function _sg_allmeta() {
+		foreach( get_post_meta( $this->sg_post ) as $key => $value ){
+			if( strpos( $key, '_sg_' ) === 0 ) {
+				echo '<strong>'.$key.'</strong>:<br/>';
+				var_dump( get_post_meta( $this->sg_post, $key, true ) );
+			}
+		}
+	}
+
+	public function _metaInit() {
+		add_meta_box( 
+			$this->sg_title, 
+			__( $this->sg_title, 'myplugin_textdomain' ), 
+			array( $this, 'admin' ), 
+			'style-guides', 
+			'normal', 
+			'high'
+		);
+	}
+		
 }
 
-$sg90 = new StyleGuideCreator();
+new sgInit();
+new styleAdmin();
+new styleGuideShortcodes();
 
-$sg90->_sg_box( 'Testing', '<p>hi</p>', '' );
+foreach (glob( SG60_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
+	require $filename;
+}
 
 function get_attach_id( $url ) {
 	$parsed_url  = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );

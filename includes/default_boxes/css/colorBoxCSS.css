@@ -1,0 +1,8 @@
+.colors > div { border-bottom: 1px solid #CCC; margin-bottom: 20px; padding-bottom: 10px; }
+.colors input,
+.colors span { display: inline-block; vertical-align: top; white-space: nowrap; width: 20%; }
+
+.colors span { margin:0 20px; white-space: normal; width: 20%; }
+.colors span input { display: block; margin: 0 0 10px 0; width: 100%; }
+
+a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}

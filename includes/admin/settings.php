@@ -3,12 +3,28 @@ class styleAdmin {
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'styleGuideMenus' ) );
+		// SAVE
+		add_action( 'save_post', array( $this, 'metaSave' ) );
 	}
 
 	function styleGuideMenus() {
 		add_menu_page( 'SG-90', 'SG-90', 'delete_pages', 'style-guide-main', array( $this, 'styleGuideMain' ), 'dashicons-welcome-write-blog', 90 );
 		add_submenu_page( 'style-guide-main', 'Add Style Guide', 'Add Style Guide', 'delete_pages', 'post-new.php?post_type=style-guides' );
 		add_submenu_page( 'style-guide-main', 'Style Guide Trash', 'Get Shortcodes', 'delete_pages', 'admin.php?page=style-guide-main' );
+	}
+	
+	public function metaSave( $post_id ) {
+		if( 'style-guides' == get_post_type( $post_id ) && !empty( $_POST ) ):
+			foreach( $_POST as $key => $value ) {
+				if( strpos( $key, '_sg_' ) === 0 ) {
+					if( get_post_meta( $post_id, $key ) && empty( $value ) ) { 
+						delete_post_meta( $post_id, $key );
+					} else {
+						update_post_meta( $post_id, $key, $value );	
+					}
+				}
+			}
+		endif;
 	}
 
 	function styleGuideMain() {
