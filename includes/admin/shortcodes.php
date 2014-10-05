@@ -24,7 +24,7 @@ class styleGuideShortcodes {
 			
 			$output = '';
 			
-			foreach( StyleGuideCreatorAgain::$sg_instances as $sg_instance ) {
+			foreach( StyleGuideCreator::$sg_instances as $sg_instance ) {
 				$output .= $sg_instance->view( $sg->ID );
 			}
 			

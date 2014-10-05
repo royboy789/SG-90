@@ -5,12 +5,21 @@ class styleAdmin {
 		add_action( 'admin_menu', array( $this, 'styleGuideMenus' ) );
 		// SAVE
 		add_action( 'save_post', array( $this, 'metaSave' ) );
+		
+		if( get_option( '_sg_bootstrap' ) && get_option( '_sg_bootstrap' ) == 'on' ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'bootstrapCode' ) );
+		}
 	}
 
 	function styleGuideMenus() {
 		add_menu_page( 'SG-90', 'SG-90', 'delete_pages', 'style-guide-main', array( $this, 'styleGuideMain' ), 'dashicons-welcome-write-blog', 90 );
 		add_submenu_page( 'style-guide-main', 'Add Style Guide', 'Add Style Guide', 'delete_pages', 'post-new.php?post_type=style-guides' );
 		add_submenu_page( 'style-guide-main', 'Style Guide Trash', 'Get Shortcodes', 'delete_pages', 'admin.php?page=style-guide-main' );
+		add_submenu_page( 'style-guide-main', 'SG-90 Settings', 'SG-90 Settings', 'delete_pages', 'sg-settings', array( $this, 'sgSettings' ) );
+	}
+	
+	function bootstrapCode() {
+		wp_enqueue_style( 'sg_bootstrap', SG60_PLUGINURL.'/includes/css/sgStyles.css', '', '1.0', 'all' );
 	}
 	
 	public function metaSave( $post_id ) {
@@ -81,8 +90,39 @@ class styleAdmin {
 		echo '</div>';
 	}
 	
-	function sg60settings() {
-		echo '<h2>Edit Style Guides</h2>';
+	function sgSettings() {
+		if( isset( $_POST['_sg_bootstrap'] ) ) {
+			update_option( '_sg_bootstrap', $_POST['_sg_bootstrap'] );
+		}
+		$_sg_bootstrap = get_option( '_sg_bootstrap', "on" );
+		echo '<h2>SG-90 Settings</h2>';
+		echo '<div id="poststuff">';
+			echo '<div class="postbox-container">';
+				echo '<div class="postbox">';
+					echo '<h3>Twitter Bootstrap</h3>';
+					echo '<div class="inside">';
+						echo '<p><a href="http://www.getbootstrap.com" target="_blank">Twitter Bootstrap</a> is a responsive framework. The SG plugins utilize it for maintaining columns, however if your theme already loads Twitter Bpotstrap, we recommend turning it off here to keep from loading resources twice</p>';
+						echo '<form action="'.admin_url('admin.php?page=sg-settings').'" method="post">';
+							echo '<div class="checkbox form-group">';
+								echo '<label>';
+									echo '<input type="radio" name="_sg_bootstrap" value="on" ';
+									if( $_sg_bootstrap == 'on' ) { echo 'checked'; }
+									echo ' /> Load Bootstrap';
+								echo '</label><br/><Br/>';
+								echo '<label>';
+									echo '<input type="radio" name="_sg_bootstrap" value="off" ';
+									if( $_sg_bootstrap == 'off' ) { echo 'checked'; }
+									echo ' /> Do not Bootstrap';
+								echo '</label>';
+							echo '</div>';
+							echo '<div class="form-group" style="margin-top: 20px;">';
+								echo '<input class="button" type="submit" value="Save Settings" />';
+							echo '</div>';
+						echo '</form>';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+		echo '</div>';
 	}
 	
 }

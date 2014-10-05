@@ -41,3 +41,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Custom
+node_modules
+includes/bootstrap
+includes/css/sgStyles.less
+Gruntfile.js
+package.json

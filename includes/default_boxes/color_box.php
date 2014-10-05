@@ -3,13 +3,18 @@ class sg_color_box extends StyleGuideCreator {
 	public $sg_title = 'Colors';
 
 	function __construct(){
-		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );		
+		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
 		parent::__construct();
 	}
 
 	function metaScripts() {
 		wp_enqueue_script( 'colorBoxJS', SG60_PLUGINURL.'/includes/default_boxes/js/colorBoxJS.js', array( 'jquery' ), '1.0', false );
 		wp_enqueue_style( 'colorBoxCSS', SG60_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
+	}
+	
+	function viewScripts() {
+		wp_enqueue_style( 'colorBoxCSSView', SG60_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
 	}
 
 	public function admin( $post ) {
@@ -90,47 +95,48 @@ class sg_color_box extends StyleGuideCreator {
 
 	
 	public function view( $sg_post_id ) {
+		$template = '';
 		$colors = get_post_meta( $sg_post_id, '_sg_colors', false );
+		$colors = $colors[0];
 		if( $colors ):
 			$template .= '<div class="row"><div class="col-md-12"><h2 class="text-center">COLORS</h2></div></div>';
-			$template .= '<div class="row sg60_colors">';
-			$i = 1;
-				foreach( $colors as $color ){
-					$template .= '';
-					$template .='<div class="col-md-3"><div class="sg60_color">';
-						$template .= '<span style="background:'.$color['colorHex'].'"></span>';
-						if( isset( $color['colorTitle'] ) )
-							$template .= '<strong class="text-center">'.$color['colorTitle'].'</strong>';
-						$template .= '<p class="text-center">'.$color['colorHex'].'</p>';
-						$template .= '<div class="row colorDefs"><div class="col-xs-6">';
-							$template .= '<p><strong>C</strong>';
-								if( isset( $color['colorCMYK']['c'] ) ) $template .= $color['colorCMYK']['c'];
-							$template .= '</p>';
-							$template .= '<p><strong>M</strong>';
-								if( isset( $color['colorCMYK']['m'] ) ) $template .= $color['colorCMYK']['m'];
-							$template .= '</p>';
-							$template .= '<p><strong>Y</strong>';
-								if( isset( $color['colorCMYK']['y'] ) ) $template .= $color['colorCMYK']['y'];
-							$template .= '</p>';
-							$template .= '<p><strong>K</strong>';
-								if( isset( $color['colorCMYK']['k'] ) ) $template .= $color['colorCMYK']['k'];
-							$template .= '</p>';
-						$template .= '</div><div class="col-xs-6">';
-							$template .= '<p><strong>R</strong>';
-								if( isset( $color['colorRGB']['r'] ) ) $template .= $color['colorRGB']['r'];
-							$template .= '</p>';
-							$template .= '<p><strong>G</strong>';
-								if( isset( $color['colorRGB']['g'] ) ) $template .= $color['colorRGB']['g'];
-							$template .= '</p>';
-							$template .= '<p><strong>B</strong>';
-								if( isset( $color['colorRGB']['b'] ) ) $template .= $color['colorRGB']['b'];
-							$template .= '</p>';
-						$template .= '</div></div>';
-							
-					$template .= '</div></div>';
-					if( $i%4 == 0 ) { $template .= '</div><div class="row sg60_colors">'; }
-					$i++;
-				}
+			$template .= '<div class="row sg_colors">';
+			$i = 0;
+			while( count( $colors['colorTitle'] ) -1 >= $i ) {
+				$template .= '';
+				$template .='<div class="col-md-3"><div class="sg_color">';
+					$template .= '<div style="height:150px;background:'.$colors['colorHex'][$i].'"></div>';
+					if( isset( $colors['colorTitle'][$i] ) )
+						$template .= '<strong class="text-center">'.$colors['colorTitle'][$i].'</strong>';
+					$template .= '<p class="text-center">'.$colors['colorHex'][$i].'</p>';
+					$template .= '<div class="row colorDefs"><div class="col-xs-6">';
+						$template .= '<p><strong>C</strong> ';
+							if( isset( $colors['colorC'][$i] ) ) $template .= $colors['colorC'][$i];
+						$template .= '</p>';
+						$template .= '<p><strong>M</strong> ';
+							if( isset( $colors['colorM'][$i] ) ) $template .= $colors['colorM'][$i];
+						$template .= '</p>';
+						$template .= '<p><strong>Y</strong> ';
+							if( isset( $colors['colorY'][$i] ) ) $template .= $colors['colorY'][$i];
+						$template .= '</p>';
+						$template .= '<p><strong>K</strong> ';
+							if( isset( $colors['colorK'][$i] ) ) $template .= $colors['colorK'][$i];
+						$template .= '</p>';
+					$template .= '</div><div class="col-xs-6">';
+						$template .= '<p><strong>R</strong> ';
+							if( isset( $colors['colorR'][$i] ) ) $template .= $colors['colorR'][$i];
+						$template .= '</p>';
+						$template .= '<p><strong>G</strong> ';
+							if( isset( $colors['colorG'][$i] ) ) $template .= $colors['colorG'][$i];
+						$template .= '</p>';
+						$template .= '<p><strong>B</strong> ';
+							if( isset( $colors['colorB'][$i] ) ) $template .= $colors['colorB'][$i];
+						$template .= '</p>';
+					$template .= '</div></div>';		
+				$template .= '</div></div>';
+				if( $i%4 == 0 && $i !== 0 ) { $template .= '</div><div class="row sg60_colors">'; }
+				$i++;
+			}
 			$template .= '</div>';
 		endif;
 		return $template;

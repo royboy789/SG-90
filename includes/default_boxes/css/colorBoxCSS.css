@@ -6,3 +6,13 @@
 .colors span input { display: block; margin: 0 0 10px 0; width: 100%; }
 
 a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
+
+
+.sg_color {
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	margin: 0 0 20px;
+	padding: 0 0 10px 0;
+}
+.sg_color strong.text-center { display: block; font-size: 20px; margin: 5px 0; }
+.sg_color .colorDefs p { padding: 0 15px; }
