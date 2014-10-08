@@ -1,5 +1,5 @@
 <?php
-class styleAdmin {
+class _sg_settings {
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'styleGuideMenus' ) );
@@ -9,6 +9,7 @@ class styleAdmin {
 		if( get_option( '_sg_bootstrap' ) && get_option( '_sg_bootstrap' ) == 'on' ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'bootstrapCode' ) );
 		}
+		
 	}
 
 	function styleGuideMenus() {
@@ -24,13 +25,40 @@ class styleAdmin {
 	
 	public function metaSave( $post_id ) {
 		if( 'style-guides' == get_post_type( $post_id ) && !empty( $_POST ) ):
+			$deleteAll = '';
+			if( isset( $_POST['_delete-all-sg'] ) )
+				$deleteAll = $_POST['_delete-all-sg'];
+
+			
 			foreach( $_POST as $key => $value ) {
-				if( strpos( $key, '_sg_' ) === 0 ) {
+				
+				if( strpos( $key, '_sg_' ) === 0 && $deleteAll === "" ) {
 					if( get_post_meta( $post_id, $key ) && empty( $value ) ) { 
 						delete_post_meta( $post_id, $key );
 					} else {
 						update_post_meta( $post_id, $key, $value );	
 					}
+				}
+				
+				elseif( strpos( $key, '_new-sg-' ) === 0 && $deleteAll === "" ) {
+					if( !get_post_meta( $post_id, '_sg_sections' ) ) {
+						$sections = array( $key );
+						add_post_meta( $post_id, '_sg_sections', $sections );
+					} else {
+						$sections = get_post_meta( $post_id, '_sg_sections', false );
+						array_push( $sections[0], $key );
+						delete_post_meta( $post_id, '_sg_sections' );
+						update_post_meta( $post_id, '_sg_sections', $sections[0] );	
+					}
+				}
+				
+				elseif( $deleteAll === "1" ) {
+					foreach( get_post_meta( $post_id ) as $key => $value ){
+						if( strpos( $key, '_sg_' ) === 0 ) {
+							$res[] = array( 'key' => $key, 'res' => delete_post_meta( $post_id, $key ) );
+						}
+					}
+					
 				}
 			}
 		endif;

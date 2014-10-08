@@ -13,8 +13,9 @@ define( 'SG60_PLUGINPATH', plugin_dir_path( __FILE__ ) );
 define( 'SG60_PLUGINURL', plugins_url( '', __FILE__ ) );
 
 require('includes/classes/sg_cpt_tax.php');
+require('includes/classes/shortcodes.php');
 require('includes/admin/settings.php');
-require('includes/admin/shortcodes.php');
+require('includes/admin/metaBoxes.php');
 
 class StyleGuideCreator {
 	/* TURN ON WP_DEBUG in your wp-config.php to view debugging meta box */
@@ -30,16 +31,10 @@ class StyleGuideCreator {
 	*/
 
 	function __construct(){			
-		array_push( $this::$sg_instances, $this );
+		array_push( $this::$sg_instances, array( 'object' => $this, 'title' => $this->sg_title ) );
 
 		if( isset( $_GET['post'] ) ) {
 			$this->sg_post = $_GET['post'];
-		}
-		
-		add_action( 'add_meta_boxes', array( $this, '_metaInit' ) );
-		
-		if( WP_DEBUG && get_post_meta( $this->sg_post ) ) {
-			add_action( 'add_meta_boxes', array( $this, '_allMetaInit' ) );
 		}
 	}
 
@@ -52,50 +47,12 @@ class StyleGuideCreator {
 	public function view( $sg_post_id ) {
 		return '<h2>'.$sg_post_id.'</h2>';
 	}
-	
-	
-	
-	/*
-	
-	DO NOT OVERWRITE FUNCTIONS BELOW
-	
-	*/
-
-	public function _allMetaInit() {
-		add_meta_box( 
-			'AllMeta', 
-			__( 'AllMeta', 'myplugin_textdomain' ), 
-			array( $this, '_sg_allmeta' ), 
-			'style-guides', 
-			'normal', 
-			'low' 
-		);	
-	}
-
-	public function _sg_allmeta() {
-		foreach( get_post_meta( $this->sg_post ) as $key => $value ){
-			if( strpos( $key, '_sg_' ) === 0 ) {
-				echo '<strong>'.$key.'</strong>:<br/>';
-				var_dump( get_post_meta( $this->sg_post, $key, true ) );
-			}
-		}
-	}
-
-	public function _metaInit() {
-		add_meta_box( 
-			$this->sg_title, 
-			__( $this->sg_title, 'myplugin_textdomain' ), 
-			array( $this, 'admin' ), 
-			'style-guides', 
-			'normal', 
-			'high'
-		);
-	}
 		
 }
 
 new sgInit();
-new styleAdmin();
+new _sg_settings();
+new _sg_meta_boxes();
 new styleGuideShortcodes();
 
 foreach (glob( SG60_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
@@ -116,6 +73,15 @@ function get_attach_id( $url ) {
  
 	$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}posts WHERE guid RLIKE %s;", $parsed_url[1] ) );
 	return $attachment[0];
+}
+
+function findSgClass( $title ) {
+   foreach ( StyleGuideCreator::$sg_instances as $key => $val ) {
+       if ( $val['title'] === $title ) {
+		   return $key;
+       }
+   }
+   return null;
 }
 
 ?>

@@ -20,15 +20,17 @@ class styleGuideShortcodes {
 		
 		if( $sg && $sg->post_type == 'style-guides' ) :
 			
-			//var_dump( StyleGuideCreatorAgain::$sg_instances );
+			var_dump( StyleGuideCreator::$sg_instances );
 			
-			$output = '';
+			/*
+$output = '';
 			
 			foreach( StyleGuideCreator::$sg_instances as $sg_instance ) {
 				$output .= $sg_instance->view( $sg->ID );
 			}
 			
 			return $output;
+*/
 			
 			
 		else:
