@@ -1,11 +1,12 @@
 <?php
 class sg_color_box extends StyleGuideCreator {
 	public $sg_title = 'Colors';
+	private $iteration = 0;
 
-	function __construct(){
+	function __construct( $title, $array ){
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
-		parent::__construct();
+		parent::__construct( $title, $array );
 	}
 
 	function metaScripts() {
@@ -21,63 +22,64 @@ class sg_color_box extends StyleGuideCreator {
 		$post_id = $post->ID;
 		
 		$html = '<p><em>Color box in guide will be based on the hex value</em></p>';
+		$html .= '<h2>'.$this->sg_admin_title.'</h2>';
 		$html .= '<div class="colors">';
-			if( !get_post_meta( $post_id, '_sg_colors', true ) ) { 
+			if( !get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_', true ) ) { 
 				$html .= '<div>';
-					$html .= '<input type="text" class="colorTitle" name="_sg_colors[colorTitle][]" placeholder="Color Title" />';
+					$html .= '<input type="text" class="colorTitle" name="_sg_'.$this->sg_admin_title.'_[colorTitle][]" placeholder="Color Title" />';
 					$html .= '<span class="colorCMYK">';
-						$html .= '<input type="text" class="colorRGB" placeholder="Cyan (C)" name="_sg_colors[colorC][]" />';
-						$html .= '<input type="text" class="colorRGB" placeholder="Magenta (M)" name="_sg_colors[colorM][]" />';
-						$html .= '<input type="text" class="colorRGB" placeholder="Yellow (Y)" name="_sg_colors[colorY][]" />';
-						$html .= '<input type="text" class="colorRGB" placeholder="Key (K)" name="_sg_colors[colorK][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Cyan (C)" name="_sg_'.$this->sg_admin_title.'_[colorC][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Magenta (M)" name="_sg_'.$this->sg_admin_title.'_[colorM][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Yellow (Y)" name="_sg_'.$this->sg_admin_title.'_[colorY][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Key (K)" name="_sg_'.$this->sg_admin_title.'_[colorK][]" />';
 					$html .= '</span>';
 					$html .= '<span class="colorRGB">';
-						$html .= '<input type="text" class="colorRGB" placeholder="Red (R)" name="_sg_colors[colorR][]" />';
-						$html .= '<input type="text" class="colorRGB" placeholder="Green (G)" name="_sg_colors[colorG][]" />';
-						$html .= '<input type="text" class="colorRGB" placeholder="Blue (B)" name="_sg_colors[colorB][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Red (R)" name="_sg_'.$this->sg_admin_title.'_[colorR][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Green (G)" name="_sg_'.$this->sg_admin_title.'_[colorG][]" />';
+						$html .= '<input type="text" class="colorRGB" placeholder="Blue (B)" name="_sg_'.$this->sg_admin_title.'_[colorB][]" />';
 					$html .= '</span>';
-					$html .= '<input type="text" class="color" placeholder="Hex Value" name="_sg_colors[colorHex][]" />';
+					$html .= '<input type="text" class="color" placeholder="Hex Value" name="_sg_'.$this->sg_admin_title.'_[colorHex][]" />';
 				$html .= '</div>';
 			} else {
 				$colorCount = 0;
-				$color = get_post_meta( $post_id, '_sg_colors', false );
+				$color = get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_', false );
 				$color = $color[0];
 				while( count( $color['colorTitle'] ) -1 >= $colorCount ) {
 					if( !empty( $color ) ):
 						$html .= '<div>';
 						
-						$html .= '<input type="text" class="colorTitle" name="_sg_colors[colorTitle][]" placeholder="Color Title" value="';
+						$html .= '<input type="text" class="colorTitle" name="_sg_'.$this->sg_admin_title.'_[colorTitle][]" placeholder="Color Title" value="';
 							if( isset( $color['colorTitle'][$colorCount] ) ) $html .= $color['colorTitle'][$colorCount];
 						$html .= '" />';
 						
 						$html .= '<span class="colorCMYK">';
-							$html .= '<input type="text" class="colorRGB" placeholder="Cyan (C)" name="_sg_colors[colorC][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Cyan (C)" name="_sg_'.$this->sg_admin_title.'_[colorC][]" value="';
 								if( isset( $color['colorC'][$colorCount] ) ) $html .= $color['colorC'][$colorCount];
 							$html .= '" />';
-							$html .= '<input type="text" class="colorRGB" placeholder="Magenta (M)" name="_sg_colors[colorM][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Magenta (M)" name="_sg_'.$this->sg_admin_title.'_[colorM][]" value="';
 								if( isset( $color['colorM'][$colorCount] ) ) $html .= $color['colorM'][$colorCount];
 							$html .= '" />';
-							$html .= '<input type="text" class="colorRGB" placeholder="Yellow (Y)" name="_sg_colors[colorY][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Yellow (Y)" name="_sg_'.$this->sg_admin_title.'_[colorY][]" value="';
 								if( isset( $color['colorY'][$colorCount] ) ) $html .= $color['colorY'][$colorCount];
 							$html .= '" />';
-							$html .= '<input type="text" class="colorRGB" placeholder="Key (K)" name="_sg_colors[colorK][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Key (K)" name="_sg_'.$this->sg_admin_title.'_[colorK][]" value="';
 								if( isset( $color['colorK'][$colorCount] ) ) $html .= $color['colorK'][$colorCount];
 							$html .= '" />';
 							
 						$html .= '</span>';
 
 						$html .= '<span class="colorRGB">';
-							$html .= '<input type="text" class="colorRGB" placeholder="Red (R)" name="_sg_colors[colorR][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Red (R)" name="_sg_'.$this->sg_admin_title.'_[colorR][]" value="';
 								if( isset ( $color['colorR'][$colorCount] ) ) $html .= $color['colorR'][$colorCount];
 							$html .= '" />';
-							$html .= '<input type="text" class="colorRGB" placeholder="Green (G)" name="_sg_colors[colorG][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Green (G)" name="_sg_'.$this->sg_admin_title.'_[colorG][]" value="';
 								if( isset ( $color['colorG'][$colorCount] ) ) $html .= $color['colorG'][$colorCount];
 							$html .= '" />';
-							$html .= '<input type="text" class="colorRGB" placeholder="Blue (B)" name="_sg_colors[colorB][]" value="';
+							$html .= '<input type="text" class="colorRGB" placeholder="Blue (B)" name="_sg_'.$this->sg_admin_title.'_[colorB][]" value="';
 								if( isset ( $color['colorB'][$colorCount] ) ) $html .= $color['colorB'][$colorCount];
 							$html .= '" />';
 						$html .= '</span>';
-							$html .= '<input type="text" class="colorHex" placeholder="Hex Code" name="_sg_colors[colorHex][]" value="';
+							$html .= '<input type="text" class="colorHex" placeholder="Hex Code" name="_sg_'.$this->sg_admin_title.'_[colorHex][]" value="';
 								if( isset ( $color['colorHex'][$colorCount] ) ) $html .= $color['colorHex'][$colorCount];
 							$html .= '" />';
 							if( $colorCount > 0 )
@@ -143,6 +145,6 @@ class sg_color_box extends StyleGuideCreator {
 	}
 }
 
-new sg_color_box();
+new sg_color_box( 'Colors', true );
 
 ?>

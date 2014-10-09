@@ -20,7 +20,19 @@ class styleGuideShortcodes {
 		
 		if( $sg && $sg->post_type == 'style-guides' ) :
 			
-			var_dump( StyleGuideCreator::$sg_instances );
+			
+			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
+			if( !empty( $sections ) ):		
+				$i = 1;
+				foreach( $sections[0] as $section ) {
+					$sectionClass = str_replace( '_new-sg-', '', $section['class'] );
+					
+					$class_index = findSgClass( $sectionClass );
+					$class = StyleGuideCreator::$sg_instances[$class_index]['object'];
+					$newMeta = new $class( $section['title'], false );
+					echo $newMeta->view( $sg->ID );
+				}
+			endif;
 			
 			/*
 $output = '';

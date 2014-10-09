@@ -22,7 +22,9 @@ class StyleGuideCreator {
 	
 	public $sg_post;
 	public $sg_title  = 'New Box';
+	public $sg_admin_title = 'Title';
 	public static $sg_instances = [];
+	public static $sg_boxes_set = [];
 
 	/*
 		IF YOU MODIFY THE CONSTRUCT FUNCTION MAKE SURE TO CALL
@@ -30,9 +32,12 @@ class StyleGuideCreator {
 			
 	*/
 
-	function __construct(){			
-		array_push( $this::$sg_instances, array( 'object' => $this, 'title' => $this->sg_title ) );
-
+	function __construct( $title, $array = true ){			
+		if( $array )
+			array_push( $this::$sg_instances, array( 'object' => $this, 'title' => $this->sg_title ) );
+		
+		if( $title ) { $this->sg_admin_title = $title; }
+		
 		if( isset( $_GET['post'] ) ) {
 			$this->sg_post = $_GET['post'];
 		}

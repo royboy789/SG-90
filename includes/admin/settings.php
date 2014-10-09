@@ -28,6 +28,7 @@ class _sg_settings {
 			$deleteAll = '';
 			if( isset( $_POST['_delete-all-sg'] ) )
 				$deleteAll = $_POST['_delete-all-sg'];
+			
 
 			
 			foreach( $_POST as $key => $value ) {
@@ -42,11 +43,11 @@ class _sg_settings {
 				
 				elseif( strpos( $key, '_new-sg-' ) === 0 && $deleteAll === "" ) {
 					if( !get_post_meta( $post_id, '_sg_sections' ) ) {
-						$sections = array( $key );
+						$sections = array( array( 'title' => $_POST['_new-title'], 'class' => $key ) );
 						add_post_meta( $post_id, '_sg_sections', $sections );
 					} else {
 						$sections = get_post_meta( $post_id, '_sg_sections', false );
-						array_push( $sections[0], $key );
+						array_push( $sections[0], array( 'title' => $_POST['_new-title'], 'class' => $key ) );
 						delete_post_meta( $post_id, '_sg_sections' );
 						update_post_meta( $post_id, '_sg_sections', $sections[0] );	
 					}

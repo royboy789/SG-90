@@ -32,6 +32,7 @@ class _sg_meta_boxes {
 	}
 	
 	function styleGuideSections() {
+		echo '<label for="_new-title">Title:</label><br/><input name="_new-title" placeholder="Title" required /><Br/><br/>';
 		foreach( StyleGuideCreator::$sg_instances as $box ) {
 			echo ' <button name="_new-sg-' . $box['title'] . '" class="button button-primary" value="1">New ' . $box['title'] . '</button>'; 
 		}
@@ -52,13 +53,17 @@ class _sg_meta_boxes {
 		if( !empty( $sections ) ):		
 			$i = 1;
 			foreach( $sections[0] as $section ) {
-				$section = str_replace( '_new-sg-', '', $section );
+				$sectionClass = str_replace( '_new-sg-', '', $section['class'] );
 				
-				$class_index = findSgClass( $section );
+				$class_index = findSgClass( $sectionClass );
+				$class = StyleGuideCreator::$sg_instances[$class_index]['object'];
+				$newMeta = new $class( $section['title'], false );
+				array_push( StyleGuideCreator::$sg_boxes_set, $newMeta );
+				
 				add_meta_box( 
-					$section . 'Section: '. $i, 
-					__( $section, 'myplugin_textdomain' ), 
-					array( StyleGuideCreator::$sg_instances[$class_index]['object'], 'admin' ),
+					$newMeta->sg_title . 'Section: '. $i, 
+					__( $newMeta->sg_title, 'myplugin_textdomain' ), 
+					array( $newMeta, 'admin' ),
 					'style-guides', 
 					'normal', 
 					'high'
