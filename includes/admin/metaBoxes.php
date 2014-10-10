@@ -32,7 +32,7 @@ class _sg_meta_boxes {
 	}
 	
 	function styleGuideSections() {
-		echo '<label for="_new-title">Title:</label><br/><input name="_new-title" placeholder="Title" required /><Br/><br/>';
+		echo '<label for="_new-title">Title:</label><br/><input name="_new-title" placeholder="Title" /><Br/><br/>';
 		foreach( StyleGuideCreator::$sg_instances as $box ) {
 			echo ' <button name="_new-sg-' . $box['title'] . '" class="button button-primary" value="1">New ' . $box['title'] . '</button>'; 
 		}

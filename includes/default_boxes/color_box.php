@@ -23,7 +23,7 @@ class sg_color_box extends StyleGuideCreator {
 		
 		$html = '<p><em>Color box in guide will be based on the hex value</em></p>';
 		$html .= '<h2>'.$this->sg_admin_title.'</h2>';
-		$html .= '<div class="colors">';
+		$html .= '<div class="colors" id="'.$this->sg_admin_title.'">';
 			if( !get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_', true ) ) { 
 				$html .= '<div>';
 					$html .= '<input type="text" class="colorTitle" name="_sg_'.$this->sg_admin_title.'_[colorTitle][]" placeholder="Color Title" />';
@@ -90,7 +90,7 @@ class sg_color_box extends StyleGuideCreator {
 				}
 			}
 		$html .= '</div>';
-		$html .= '<button class="button button-primary addColor">Add Color</button>';
+		$html .= '<button class="button button-primary addColor" data-title="'.$this->sg_admin_title.'" >Add Color</button>';
 
 		echo $html;
 	}
@@ -98,10 +98,10 @@ class sg_color_box extends StyleGuideCreator {
 	
 	public function view( $sg_post_id ) {
 		$template = '';
-		$colors = get_post_meta( $sg_post_id, '_sg_colors', false );
-		$colors = $colors[0];
+		$colors = get_post_meta( $sg_post_id, '_sg_'.$this->sg_admin_title.'_', false );
 		if( $colors ):
-			$template .= '<div class="row"><div class="col-md-12"><h2 class="text-center">COLORS</h2></div></div>';
+			$colors = $colors[0];
+			$template .= '<div class="row"><div class="col-md-12"><h2 class="text-center">Colors: '.$this->sg_admin_title.'</h2></div></div>';
 			$template .= '<div class="row sg_colors">';
 			$i = 0;
 			while( count( $colors['colorTitle'] ) -1 >= $i ) {
