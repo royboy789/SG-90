@@ -1,7 +1,6 @@
 <?php
 class sg_color_box extends StyleGuideCreator {
 	public $sg_title = 'Colors';
-	private $iteration = 0;
 
 	function __construct( $title, $array ){
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );

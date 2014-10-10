@@ -32,12 +32,15 @@ class StyleGuideCreator {
 			
 	*/
 
-	function __construct( $title, $array = true ){			
+	function __construct( $title, $array = true ){
+		// Push object into instance array (only used for registering class)
 		if( $array )
 			array_push( $this::$sg_instances, array( 'object' => $this, 'title' => $this->sg_title ) );
 		
+		// Set instance title
 		if( $title ) { $this->sg_admin_title = $title; }
 		
+		// Get ID from parameters 
 		if( isset( $_GET['post'] ) ) {
 			$this->sg_post = $_GET['post'];
 		}
