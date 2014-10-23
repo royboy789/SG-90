@@ -1,12 +1,12 @@
 <?php
 
-echo '<h3>Getting Started with SG-60 Style Guide Creator</h3>';
+echo '<h3>Getting Started with SG-90 Style Guide Creator</h3>';
 echo '<ol>';
 	echo '<li>Click on "Add Style Guide" in the menu in the SG60 sub-menu or click the "Create Style Guide" Button above.</li>';
 	echo '<li>Add your logo(s), colors, font choices and design influences. It works just like any other WordPress post or page so adding your proposed logo, color scheme, fonts and influences is very intuitive.</li>';
 	echo '<li>Don\'t forget to publish!</li>';
 	echo '<li>Grab the Shortcode and put it on your client vision board page… or anywhere else on your site!</li>';
-	echo '<li>Click "edit" on an existing SG-60 Style Guide to make tweaks, add or remove items, etc.</li>';
+	echo '<li>Click "edit" on an existing SG-90 Style Guide to make tweaks, add or remove items, etc.</li>';
 echo '</ol>';
 
 echo '<h3>Logo(s)</h3>';
