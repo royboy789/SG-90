@@ -106,7 +106,7 @@ class sg_color_box extends StyleGuideCreator {
 			while( count( $colors['colorTitle'] ) -1 >= $i ) {
 				$template .= '';
 				$template .='<div class="col-md-4"><div class="sg_color">';
-					$template .= '<div style="height:150px;background:'.$colors['colorHex'][$i].'"></div>';
+					$template .= '<div class="colorBox" style="background:'.$colors['colorHex'][$i].'"></div>';
 					if( isset( $colors['colorTitle'][$i] ) )
 						$template .= '<strong class="text-center">'.$colors['colorTitle'][$i].'</strong>';
 					$template .= '<p class="text-center">'.$colors['colorHex'][$i].'</p>';
