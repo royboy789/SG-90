@@ -8,5 +8,5 @@ echo '<ol>';
 	echo '<li>Copy the Shortcode and paste it anywhere on your site. Add more content around the Style Guide for even further customization</li>';
 	echo '<li>Click "edit" on an existing SG-90 Style Guide to make tweaks, add or remove items, etc.</li>';
 echo '</ol>';
-echo '<iframe width="100%" height="500" src="//www.youtube.com/embed/0u2BpzrwG3s" frameborder="0" allowfullscreen></iframe>';
+//echo '<iframe width="100%" height="500" src="//www.youtube.com/embed/0u2BpzrwG3s" frameborder="0" allowfullscreen></iframe>';
 ?>
