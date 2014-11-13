@@ -23,5 +23,5 @@ class sg_new_box extends StyleGuideCreator {
 
 }	
 
-new sg_new_box( 'New Box' );
+//new sg_new_box( 'New Box' );
 ?>

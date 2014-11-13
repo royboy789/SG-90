@@ -9,8 +9,8 @@
  * License: GPL2
  */
 
-define( 'SG60_PLUGINPATH', plugin_dir_path( __FILE__ ) );
-define( 'SG60_PLUGINURL', plugins_url( '', __FILE__ ) );
+define( 'SG90_PLUGINPATH', plugin_dir_path( __FILE__ ) );
+define( 'SG90_PLUGINURL', plugins_url( '', __FILE__ ) );
 
 require('includes/classes/sg_cpt_tax.php');
 require('includes/classes/shortcodes.php');
@@ -63,7 +63,7 @@ new _sg_settings();
 new _sg_meta_boxes();
 new styleGuideShortcodes();
 
-foreach (glob( SG60_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
+foreach (glob( SG90_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
 	require $filename;
 }
 

@@ -9,12 +9,12 @@ class sg_color_box extends StyleGuideCreator {
 	}
 
 	function metaScripts() {
-		wp_enqueue_script( 'colorBoxJS', SG60_PLUGINURL.'/includes/default_boxes/js/colorBoxJS.js', array( 'jquery' ), '1.0', false );
-		wp_enqueue_style( 'colorBoxCSS', SG60_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
+		wp_enqueue_script( 'colorBoxJS', SG90_PLUGINURL.'/includes/default_boxes/js/colorBoxJS.js', array( 'jquery' ), '1.0', false );
+		wp_enqueue_style( 'colorBoxCSS', SG90_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
 	}
 	
 	function viewScripts() {
-		wp_enqueue_style( 'colorBoxCSSView', SG60_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
+		wp_enqueue_style( 'colorBoxCSSView', SG90_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
 	}
 
 	public function admin( $post ) {
@@ -91,7 +91,7 @@ class sg_color_box extends StyleGuideCreator {
 		$html .= '</div>';
 		$html .= '<button class="button button-primary addColor" data-title="'.$this->sg_admin_title.'" >Add Color</button>';
 
-		echo $html;
+		return $html;
 	}
 
 	
@@ -105,7 +105,7 @@ class sg_color_box extends StyleGuideCreator {
 			$i = 0;
 			while( count( $colors['colorTitle'] ) -1 >= $i ) {
 				$template .= '';
-				$template .='<div class="col-md-3"><div class="sg_color">';
+				$template .='<div class="col-md-4"><div class="sg_color">';
 					$template .= '<div style="height:150px;background:'.$colors['colorHex'][$i].'"></div>';
 					if( isset( $colors['colorTitle'][$i] ) )
 						$template .= '<strong class="text-center">'.$colors['colorTitle'][$i].'</strong>';
@@ -135,7 +135,7 @@ class sg_color_box extends StyleGuideCreator {
 						$template .= '</p>';
 					$template .= '</div></div>';		
 				$template .= '</div></div>';
-				if( $i%4 == 0 && $i !== 0 ) { $template .= '</div><div class="row sg60_colors">'; }
+				if( $i%3 == 0 && $i !== 0 ) { $template .= '</div><div class="row sg90_colors">'; }
 				$i++;
 			}
 			$template .= '</div>';

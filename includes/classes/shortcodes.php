@@ -14,16 +14,18 @@ class styleGuideShortcodes {
 			'id' => ''
 		), $atts );
 		
-		if( empty( $a['id'] ) ) return '<p>Please define a SG-90 Style Guide ID in your shortcode <code>[sg60 id="..."]</code></p>';
+		if( empty( $a['id'] ) ) return '<p>Please define a SG-90 Style Guide ID in your shortcode <code>[SG-90 id="..."]</code></p>';
 		
 		$sg = get_post( intval( $a['id'] ) );
 		
 		if( $sg && $sg->post_type == 'style-guides' ) :
 			
+			//delete_post_meta( $sg->ID, '_sg_sections' );
 			
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
 			if( !empty( $sections ) ):
 				$tmpl = '';
+				
 				foreach( $sections[0] as $section ) {
 					$sectionClass = str_replace( '_new-sg-', '', $section['class'] );
 					$class_index = findSgClass( $sectionClass );
@@ -33,6 +35,9 @@ class styleGuideShortcodes {
 					// CALL CLASS
 					$tmpl .= $newMeta->view( $sg->ID );
 				}
+				return $tmpl;
+			else:
+				$tmpl = '<p>Style Guide is empty</p>';
 				return $tmpl;
 			endif;
 			
