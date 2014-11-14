@@ -16,6 +16,7 @@ require('includes/classes/sg_cpt_tax.php');
 require('includes/classes/shortcodes.php');
 require('includes/admin/settings.php');
 require('includes/admin/metaBoxes.php');
+require('includes/admin/licensing.php');
 
 class StyleGuideCreator {
 	/* TURN ON WP_DEBUG in your wp-config.php to view debugging meta box */
@@ -62,6 +63,7 @@ new sgInit();
 new _sg_settings();
 new _sg_meta_boxes();
 new styleGuideShortcodes();
+new pluginLicense();
 
 foreach (glob( SG90_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
 	require $filename;
