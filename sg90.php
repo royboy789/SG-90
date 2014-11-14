@@ -17,6 +17,7 @@ require('includes/classes/shortcodes.php');
 require('includes/admin/settings.php');
 require('includes/admin/metaBoxes.php');
 require('includes/admin/licensing.php');
+require('includes/admin/activation.php');
 
 class StyleGuideCreator {
 	/* TURN ON WP_DEBUG in your wp-config.php to view debugging meta box */

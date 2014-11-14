@@ -27,7 +27,7 @@ class sg_image_box extends StyleGuideCreator {
 			};
 			
 			$html .= '<label for="layout_showcase"><input id="layout_showcase" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_showcase"';
-				if( $layout === 'layout_showcase' ) { $html .= 'checked="checked"'; }
+				if( $layout === 'layout_showcase' || $layout === '' ) { $html .= 'checked="checked"'; }
 			$html .= '> Showcase</label><br/>';
 			
 			$html .= '<label for="layout_col"><input id="layout_col" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_col"';

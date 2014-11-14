@@ -100,7 +100,7 @@ class _sg_meta_boxes {
 	
 	function _adminContent( $post, $data ) {
 		echo $data['args']['classFunc']->admin( $post );
-		//echo $data['args']['index'];
+		echo '<br/><br/><button class="button button-primary" name="_remove_section" value="'.$data['args']['index'].'">Remove Section</a>';
 	}
 }
 

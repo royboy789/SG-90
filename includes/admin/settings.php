@@ -70,9 +70,10 @@ class _sg_settings {
 					
 					$newSections = [];
 					var_dump( $value );
+					var_dump( $sections );
 					foreach( $value as $key => $value ) {
-						$newKey = $key - 1;
-						$newSections[$value-1] = $sections[0][$key];
+						$newKey = $value - 1;
+						$newSections[$newKey] = $sections[0][$key];
 					}
 					ksort( $newSections );
 					
@@ -83,6 +84,20 @@ class _sg_settings {
 					update_post_meta( $post_id, '_sg_sections', $newSections );	
 				}
 				
+				elseif( strpos( $key, '_remove_section' ) === 0 && $deleteAll === "" ) {
+					
+					$value = intval( $value ) - 1;
+					var_dump( $value );
+					$sections = get_post_meta( $post_id, '_sg_sections', false );
+					var_dump( $sections[0] );
+					array_splice( $sections[0], $value, 1 );
+					var_dump( $sections[0] );
+					delete_post_meta( $post_id, '_sg_sections' );
+					update_post_meta( $post_id, '_sg_sections', $sections[0] );	
+						
+					//die();
+				}
+				
 				elseif( $deleteAll === "1" ) {
 					foreach( get_post_meta( $post_id ) as $key => $value ){
 						if( strpos( $key, '_sg_' ) === 0 ) {
@@ -91,6 +106,7 @@ class _sg_settings {
 					}
 					
 				}
+
 			}
 		endif;
 	}
