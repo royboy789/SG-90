@@ -186,10 +186,10 @@ class pluginLicense {
 		
         // setup the updater
         $edd_updater = new EDD_SL_Plugin_Updater( EDD_SAMPLE_STORE_URL, $location, array( 
-            'version'   => '1.1',
+            'version'   => '1.0.1',
             'license'   => $license_key,
             'item_name' => EDD_SAMPLE_ITEM_NAME,
-            'author'    => 'Roy Sivan'
+            'author'    => 'Arc(CTRL)'
         ));
 
     }
