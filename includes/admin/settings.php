@@ -98,7 +98,7 @@ class _sg_settings {
 	function styleGuideMain() {
 		$args = array( 'post_type' => 'style-guides' );
 		$loop = new WP_Query( $args );
-		echo '<br/><img src="'.SG90_PLUGINURL.'/includes/admin/img/sg60-logo.png" class="sg60Logo" />';
+		echo '<br/><img src="'.SG90_PLUGINURL.'/includes/admin/img/sg90-logo.jpg" class="sg60Logo" />';
 		echo '<h2>SG-90 Style Guides</h2>';
 		echo '<div class="wrap feature-filter">';
 			echo '<table class="widefat">';
