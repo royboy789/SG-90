@@ -6,7 +6,7 @@ class pluginLicense {
         global $wpdb;
         
         define( 'EDD_SAMPLE_STORE_URL', 'http://arcctrl.com' );
-        define( 'EDD_SAMPLE_ITEM_NAME', 'sg-90' );
+        define( 'EDD_SAMPLE_ITEM_NAME', 'SG-90' );
 
         add_action( 'admin_init', array( $this, 'licenseActivate' ) );
         add_action( 'admin_init', array( $this, 'licenseDeActivate' ) );
@@ -30,7 +30,7 @@ class pluginLicense {
     }
 
     function licensePage() {
-        add_submenu_page( 'style-guide-main', 'SG-90 Licensing', 'SG-90 Pro License', 'manage_options', 'wp-rtc-license', array( $this, 'sg90_license_page' ) );
+        add_submenu_page( 'style-guide-main', 'SG-90 Licensing', 'SG-90 License', 'manage_options', 'sg90-license', array( $this, 'sg90_license_page' ) );
     }
 
     function sg90_license_page() {
@@ -209,15 +209,14 @@ class pluginLicense {
 		// Call the custom API.
 		$response = wp_remote_get( add_query_arg( $api_params, EDD_SAMPLE_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
 	
-	
 		if ( is_wp_error( $response ) )
 			return false;
 	
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-	
+		
 		if( !$license_data->license == 'valid' ) {
 			add_action( 'admin_notices', function() {
-				echo '<div class="error"><p><strong>sg90 is not licensed</strong> you can get your license from the order history page. <a href="/wp-admin/admin.php?page=wp-rtc-license">Activate sg90</a> to receive future updates</p></div>';
+				echo '<div class="error"><p><strong>sg90 is not licensed</strong> you can get your license from the order history page. <a href="/wp-admin/admin.php?page=sg90-license">Activate sg90</a> to receive future updates</p></div>';
 			} );
 		}
 	}
