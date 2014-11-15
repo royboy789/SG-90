@@ -68,7 +68,7 @@ class _sg_settings {
 					
 					$sections = get_post_meta( $post_id, '_sg_sections', false );
 					
-					$newSections = [];
+					$newSections = array();
 					var_dump( $value );
 					var_dump( $sections );
 					foreach( $value as $key => $value ) {

@@ -21,12 +21,12 @@ class sg_button_box extends StyleGuideCreator {
 	
 	public function view( $post_id ) {
 		$this->sg_admin_title = str_replace( ' ', '_', $this->sg_admin_title );
-		$buttons = array( 'btn-lg' => 'Button Large', 'btn-primary' => 'Button Primary', 'btn-sm' => 'Button Small', 'btn-xs' => 'Button Extra Small', 'btn-block' => 'Button Block' );
+		$buttons = array( 'btn-lg' => 'Button Large', 'btn-primary' => 'Button Primary', 'btn-sm' => 'Button Small' );
 		$color = get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_button', true );
 		
 		echo '<div class="row"><div class="col-md-12 text-center">';
 		foreach( $buttons as $key => $value ){
-			echo '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:10px 0;">'.$value.' (.'.$key.')</div><br/>';	
+			echo '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:10px 0;">'.$value.'</div><br/>';	
 		}
 		echo '</div></div>';
 	}

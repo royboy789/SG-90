@@ -166,14 +166,6 @@ class pluginLicense {
 
     function plugin_updater() {
 
-        // Initial Setup
-        $license = get_option('sg90_license');
-        $status = get_option('sg90_license_status');
-
-
-        if( !$license ) { update_option('sg90_license', ''); }
-        if( !$status ) { update_option( 'sg90_license_status', 'invalid' ); }
-
         if( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
             include( dirname( __FILE__ ) . '/pluginUpdater.php' );
         }
@@ -182,16 +174,17 @@ class pluginLicense {
 		
         // setup location
 		$location = __FILE__;
-		$location = str_replace('includes/licensing.php', 'plugin.php', $location);
+		$location = str_replace('includes/admin/licensing.php', 'plugin.php', $location);
+		
 		
         // setup the updater
         $edd_updater = new EDD_SL_Plugin_Updater( EDD_SAMPLE_STORE_URL, $location, array( 
-            'version'   => '1.0.1',
+            'version'   => '1.0',
             'license'   => $license_key,
             'item_name' => EDD_SAMPLE_ITEM_NAME,
-            'author'    => 'Arc(CTRL)'
+            'author'    => 'Arc(CTRL)',
+            'url' 		=> home_url()
         ));
-
     }
     
     function sg90_license_check() {

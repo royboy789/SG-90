@@ -12,21 +12,14 @@
 define( 'SG90_PLUGINPATH', plugin_dir_path( __FILE__ ) );
 define( 'SG90_PLUGINURL', plugins_url( '', __FILE__ ) );
 
-require('includes/classes/sg_cpt_tax.php');
-require('includes/classes/shortcodes.php');
-require('includes/admin/settings.php');
-require('includes/admin/metaBoxes.php');
-require('includes/admin/licensing.php');
-require('includes/admin/activation.php');
-
 class StyleGuideCreator {
 	/* TURN ON WP_DEBUG in your wp-config.php to view debugging meta box */
 	
 	public $sg_post;
 	public $sg_title  = 'New Box';
 	public $sg_admin_title = 'Title';
-	public static $sg_instances = [];
-	public static $sg_boxes_set = [];
+	public static $sg_instances = array();
+	public static $sg_boxes_set = array();
 
 	/*
 		IF YOU MODIFY THE CONSTRUCT FUNCTION MAKE SURE TO CALL
@@ -59,6 +52,13 @@ class StyleGuideCreator {
 	}
 		
 }
+
+require('includes/classes/sg_cpt_tax.php');
+require('includes/classes/shortcodes.php');
+require('includes/admin/settings.php');
+require('includes/admin/metaBoxes.php');
+require('includes/admin/licensing.php');
+require('includes/admin/activation.php');
 
 new sgInit();
 new _sg_settings();
