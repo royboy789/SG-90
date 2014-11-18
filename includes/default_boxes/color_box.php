@@ -4,17 +4,11 @@ class sg_color_box extends StyleGuideCreator {
 
 	function __construct( $title, $array ){
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
 		parent::__construct( $title, $array );
 	}
 
 	function metaScripts() {
 		wp_enqueue_script( 'colorBoxJS', SG90_PLUGINURL.'/includes/default_boxes/js/colorBoxJS.js', array( 'jquery' ), '1.0', false );
-		wp_enqueue_style( 'colorBoxCSS', SG90_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
-	}
-	
-	function viewScripts() {
-		wp_enqueue_style( 'colorBoxCSSView', SG90_PLUGINURL.'/includes/default_boxes/css/colorBoxCSS.css', '', '1.0', 'all' );
 	}
 
 	public function admin( $post ) {
@@ -135,7 +129,7 @@ class sg_color_box extends StyleGuideCreator {
 						$template .= '</p>';
 					$template .= '</div></div>';		
 				$template .= '</div></div>';
-				if( $i%3 == 0 && $i !== 0 ) { $template .= '</div><div class="row sg90_colors">'; }
+				if( [$i-1]%3 == 0 && $i - 1 !== 0 ) { $template .= '</div><div class="row sg_colors">'; }
 				$i++;
 			}
 			$template .= '</div>';

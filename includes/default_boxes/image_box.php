@@ -16,7 +16,7 @@ class sg_image_box extends StyleGuideCreator {
 	public function admin( $post ) {
 		$post_id = $post->ID;
 		$this->sg_admin_title = str_replace( ' ', '_', $this->sg_admin_title );
-		$html = '<div class="imageWrapper">';
+		$html = '<div class="imageWrapper" id="_sgBox_'.$this->sg_admin_title.'">';
 			$html .= '<h2>'.$this->sg_admin_title.'</h2>';
 			
 			$html .= '<h2>Layout</h2>';
@@ -57,7 +57,7 @@ class sg_image_box extends StyleGuideCreator {
 				$html .= '<a href="#" class="removeImage" style="color: red">x</a>';
 			$html .= '</div>';
 		$html .= '</div>';
-		$html .= '<br/><button class="button button-primary addImage" data-title="'.$this->sg_admin_title.'" >Add Image</button>';
+		$html .= '<br/><button class="button button-primary addImage" data-title="'.$this->sg_admin_title.'" data-box="_sgBox_'.$this->sg_admin_title.'" >Add Image</button>';
 		
 		return $html;
 	}

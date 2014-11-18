@@ -27,7 +27,7 @@ class _sg_settings {
 	}
 	
 	function bootstrapCode() {
-		wp_enqueue_style( 'sg_bootstrap', SG90_PLUGINURL.'/includes/css/sgStyles.css', '', '1.0', 'all' );
+		wp_enqueue_style( 'sg_bootstrap', SG90_PLUGINURL.'/includes/css/sgStyles.css', array( '_sg90_css' ), '1.0', 'all' );
 	}
 	
 	public function metaSave( $post_id ) {
@@ -69,16 +69,11 @@ class _sg_settings {
 					$sections = get_post_meta( $post_id, '_sg_sections', false );
 					
 					$newSections = array();
-					var_dump( $value );
-					var_dump( $sections );
 					foreach( $value as $key => $value ) {
-						$newKey = $value - 1;
-						$newSections[$newKey] = $sections[0][$key];
+						$value = $value - 1;
+						$newSections[$key] = $sections[0][$value];
 					}
 					ksort( $newSections );
-					
-					var_dump( $newSections );
-					//die();
 					
 					delete_post_meta( $post_id, '_sg_sections' );
 					update_post_meta( $post_id, '_sg_sections', $newSections );	
@@ -87,11 +82,11 @@ class _sg_settings {
 				elseif( strpos( $key, '_remove_section' ) === 0 && $deleteAll === "" ) {
 					
 					$value = intval( $value ) - 1;
-					var_dump( $value );
+					//var_dump( $value );
 					$sections = get_post_meta( $post_id, '_sg_sections', false );
-					var_dump( $sections[0] );
+					//var_dump( $sections[0] );
 					array_splice( $sections[0], $value, 1 );
-					var_dump( $sections[0] );
+					//var_dump( $sections[0] );
 					delete_post_meta( $post_id, '_sg_sections' );
 					update_post_meta( $post_id, '_sg_sections', $sections[0] );	
 						

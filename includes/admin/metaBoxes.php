@@ -3,12 +3,37 @@
 class _sg_meta_boxes {
 	
 	function __construct() {
-		add_action( 'add_meta_boxes', array( $this, '_metaInit' ) );
+		
+		if( $_GET && isset( $_GET['post'] ) )
+			$sg_post = get_post( intval( $_GET['post'] ) );
+		
+		if( isset( $sg_post ) && $sg_post->post_status == 'publish' ) {
+			add_action( 'add_meta_boxes', array( $this, '_metaInit' ) );	
+		} else {
+			add_action( 'add_meta_boxes', array( $this, '_metaPreSave' ) );	
+		}
 		
 		if( WP_DEBUG && isset( $_GET['post'] ) && get_post_type( $_GET['post'] ) == 'style-guides' ) {
 			add_action( 'add_meta_boxes', array( $this, '_allMetaInit' ) );
 		}
 		
+	}
+	
+	/** PRE SAVE **/
+	public function _metaPreSave() {
+		add_meta_box( 
+			'Save Style Guide', 
+			__( 'New Style Guide', 'myplugin_textdomain' ), 
+			array( $this, '_sg_preSave' ), 
+			'style-guides', 
+			'normal', 
+			'low' 
+		);	
+	}
+	
+	function _sg_preSave() {
+		echo '<h2>New Style Guide Step 1</h2>';
+		echo '<p>To start adding and customizing sections to your new style guide, please title and publish the style guide</p>';
 	}
 	
 	public function _allMetaInit() {

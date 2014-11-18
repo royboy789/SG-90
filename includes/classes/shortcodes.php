@@ -3,7 +3,7 @@
 class styleGuideShortcodes {
 	
 	function __construct() {
-		add_shortcode( 'sg-90', array( $this, 'sgShortcode' ) );
+		add_shortcode( 'SG-90', array( $this, 'sgShortcode' ) );
 		
 	}
 	
@@ -23,6 +23,7 @@ class styleGuideShortcodes {
 			//delete_post_meta( $sg->ID, '_sg_sections' );
 			
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
+			//var_dump( $sections );
 			if( !empty( $sections ) ):
 				$tmpl = '';
 				
@@ -32,7 +33,8 @@ class styleGuideShortcodes {
 					// CALL CLASS
 					$class = StyleGuideCreator::$sg_instances[$class_index]['object'];
 					$newMeta = new $class( $section['title'], false );
-					// CALL CLASS
+					//var_dump( $newMeta->sg_admin_title );
+					// CALL CLASS VIEW FUNCTION
 					$tmpl .= $newMeta->view( $sg->ID );
 				}
 				return $tmpl;

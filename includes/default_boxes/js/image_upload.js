@@ -10,7 +10,7 @@ $(document).ready( function($){
 		
 		var inpt = $(this).children('input');
 		
-		// If the media frame already exists, reopen it.
+		// If the media frame already exists, reopen it
 		if ( file_frame ) {
 			file_frame = {};
 		}
@@ -36,10 +36,15 @@ $(document).ready( function($){
 	
 	$('body').on('click', '.addImage', function(e) {
 		e.preventDefault();
-		$('.imageContainer:first').find('a.removeImage').show();
-		$('.imageContainer:first').clone().appendTo('.imageWrapper');
-		$('.imageContainer:first').find('a.removeImage').hide();
-		$('.imageContainer:last').find('input').val('');
+		var first = $('#' + $(this).data('box') + ' .imageContainer:first'),
+		last = $('#' + $(this).data('box') + ' .imageContainer:last');
+		
+		console.log( first );
+		
+		first.find('a.removeImage').show();
+		first.clone().appendTo('#' + $(this).data('box'));
+		first.find('a.removeImage').hide();
+		last.find('input').val('');
 	});
 	
 	$('body').on('click', '.removeImage', function(e) {

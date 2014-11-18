@@ -49,7 +49,7 @@ class sgInit {
 	function singleTemplate( $content ) {
 		if( 'style-guides' === get_post_type() ) {
 			global $post;
-			$content = do_shortcode( '[sg-90 id="'.$post->ID.'"]' );
+			$content = do_shortcode( '[SG-90 id="'.$post->ID.'"]' );
 		}
 		
 		return $content;

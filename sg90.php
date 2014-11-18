@@ -3,7 +3,7 @@
  * Plugin Name: SG-90 - Style Guide Creator
  * Plugin URI: http://arcctrl.com/plugins/sg-90
  * Description: This plugin will allow you to easily create style guide for your clients
- * Version: 1.0
+ * Version: 1.2
  * Author: ARC(CTRL)
  * Author URI: http://www.arcctrl.com
  * License: GPL2
@@ -39,8 +39,20 @@ class StyleGuideCreator {
 		if( isset( $_GET['post'] ) ) {
 			$this->sg_post = $_GET['post'];
 		}
+		
+		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'adminScripts' ) );
+		
 	}
-
+	
+	/* Front End CSS */
+	function viewScripts() {
+		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_css.css', '', '1.0', 'all' );
+	}
+	
+	function adminScripts() {
+		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_admin_css.css', '', '1.0', 'all' );
+	}
 	/* OVERWRITE FOR ADMIN CODE */
 	public function admin( $post ) {
 		echo '<h3>New Meta Box</h3>';
