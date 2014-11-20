@@ -28,20 +28,17 @@ class styleGuideShortcodes {
 			
 			//delete_post_meta( $sg->ID, '_sg_sections' );
 			
-			var_dump( SG_Factory::$sg_instances );
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
+			
+			if( empty( $sections ) ) { return '<p>This Style Guide is empty, add some Style Guide Sections</p>'; }
 			
 			foreach( $sections[0] as $section ) {
 				$className = str_replace( '_new-sg-', '', $section['class'] );
-
 				$class = SG_Factory::$sg_instances[$className];
 				$newMeta = new $class( $section['title'], false );
 				$newMeta->view( $sg->ID );
 			}
-			
-			
-		else:
-			
+		else:			
 			return '<p>Cannot find a Style Guide with that ID</p>';
 		
 		endif;
