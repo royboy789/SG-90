@@ -1,6 +1,6 @@
 <?php
 
-class sg_image_box extends StyleGuideCreator {
+class sg_image_box extends StyleGuideSection {
 	public $sg_title = 'Images';
 	
 	function __construct( $title, $array ){
@@ -126,5 +126,6 @@ class sg_image_box extends StyleGuideCreator {
 
 }	
 
-new sg_image_box( 'Image Box', true );
+$init = new SG_Factory();
+$init->register( 'Image Box', 'sg_image_box' );
 ?>

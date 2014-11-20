@@ -1,7 +1,6 @@
 <?php
 
-class sg_button_box extends StyleGuideCreator {
-	public $sg_title = 'Buttons';
+class sg_button_box extends StyleGuideSection {
 	
 	public function admin( $post ) {
 		$post_id = $post->ID;
@@ -31,9 +30,9 @@ class sg_button_box extends StyleGuideCreator {
 		echo '</div></div>';
 	}
 	
-	
-
 }	
 
-new sg_button_box( 'Button Box' );
+$init = new SG_Factory();
+$init->register( 'Buttons', 'sg_button_box' );
+
 ?>

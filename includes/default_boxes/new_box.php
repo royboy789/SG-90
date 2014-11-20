@@ -1,6 +1,6 @@
 <?php
 
-class sg_new_box extends StyleGuideCreator {
+class sg_new_box extends StyleGuideSection {
 	public $sg_title = 'Test';
 	
 	public function admin( $post ) {

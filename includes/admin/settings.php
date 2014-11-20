@@ -52,12 +52,16 @@ class _sg_settings {
 				
 				elseif( strpos( $key, '_new-sg-' ) === 0 && $deleteAll === "" ) {
 					if( !get_post_meta( $post_id, '_sg_sections' ) ) {
+						
 						$newTitle = str_replace( ' ' , '_', $_POST['_new-title'] );
 						$sections = array( array( 'title' => $newTitle, 'class' => $key ) );
+						
 						add_post_meta( $post_id, '_sg_sections', $sections );
 					} else {
 						$newTitle = str_replace( ' ' , '_', $_POST['_new-title'] );
+						
 						$sections = get_post_meta( $post_id, '_sg_sections', false );
+						
 						array_push( $sections[0], array( 'title' => $newTitle, 'class' => $key ) );
 						delete_post_meta( $post_id, '_sg_sections' );
 						update_post_meta( $post_id, '_sg_sections', $sections[0] );	

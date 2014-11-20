@@ -4,7 +4,13 @@ class styleGuideShortcodes {
 	
 	function __construct() {
 		add_shortcode( 'SG-90', array( $this, 'sgShortcode' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
 		
+	}
+	
+	/* Front End CSS */
+	public function viewScripts() {
+		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_css.css', '', '1.0', 'all' );
 	}
 	
 	function sgShortcode( $atts ) {
@@ -22,36 +28,16 @@ class styleGuideShortcodes {
 			
 			//delete_post_meta( $sg->ID, '_sg_sections' );
 			
+			var_dump( SG_Factory::$sg_instances );
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
-			//var_dump( $sections );
-			if( !empty( $sections ) ):
-				$tmpl = '';
-				
-				foreach( $sections[0] as $section ) {
-					$sectionClass = str_replace( '_new-sg-', '', $section['class'] );
-					$class_index = findSgClass( $sectionClass );
-					// CALL CLASS
-					$class = StyleGuideCreator::$sg_instances[$class_index]['object'];
-					$newMeta = new $class( $section['title'], false );
-					//var_dump( $newMeta->sg_admin_title );
-					// CALL CLASS VIEW FUNCTION
-					$tmpl .= $newMeta->view( $sg->ID );
-				}
-				return $tmpl;
-			else:
-				$tmpl = '<p>Style Guide is empty</p>';
-				return $tmpl;
-			endif;
 			
-			/*
-$output = '';
-			
-			foreach( StyleGuideCreator::$sg_instances as $sg_instance ) {
-				$output .= $sg_instance->view( $sg->ID );
+			foreach( $sections[0] as $section ) {
+				$className = str_replace( '_new-sg-', '', $section['class'] );
+
+				$class = SG_Factory::$sg_instances[$className];
+				$newMeta = new $class( $section['title'], false );
+				$newMeta->view( $sg->ID );
 			}
-			
-			return $output;
-*/
 			
 			
 		else:

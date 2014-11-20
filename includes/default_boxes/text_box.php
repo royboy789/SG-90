@@ -1,6 +1,6 @@
 <?php
 
-class sg_text_box extends StyleGuideCreator {
+class sg_text_box extends StyleGuideSection {
 	public $sg_title = 'Text';
 	
 	public function admin( $post ) {
@@ -21,5 +21,6 @@ class sg_text_box extends StyleGuideCreator {
 
 }	
 
-new sg_text_box( 'New Box' );
+$init = new SG_Factory();
+$init->register( 'Text Box', 'sg_text_box' );
 ?>

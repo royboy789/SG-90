@@ -1,10 +1,9 @@
 <?php
-class sg_color_box extends StyleGuideCreator {
-	public $sg_title = 'Colors';
-
-	function __construct( $title, $array ){
+class sg_color_box extends StyleGuideSection {
+	
+	function __construct( $title ){
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
-		parent::__construct( $title, $array );
+		parent::__construct( $title );
 	}
 
 	function metaScripts() {
@@ -134,10 +133,11 @@ class sg_color_box extends StyleGuideCreator {
 			}
 			$template .= '</div>';
 		endif;
-		return $template;
+		echo $template;
 	}
 }
 
-new sg_color_box( 'Colors', true );
+$init = new SG_Factory();
+$init->register( 'Colors', 'sg_color_box' );
 
 ?>
