@@ -5,7 +5,6 @@ class styleGuideShortcodes {
 	function __construct() {
 		add_shortcode( 'SG-90', array( $this, 'sgShortcode' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'viewScripts' ) );
-		
 	}
 	
 	/* Front End CSS */
@@ -15,7 +14,7 @@ class styleGuideShortcodes {
 	
 	function sgShortcode( $atts ) {
 		global $sg90_shortcode_html;
-
+		
 		$a = shortcode_atts( array(
 			'id' => ''
 		), $atts );
