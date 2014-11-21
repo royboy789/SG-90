@@ -36,7 +36,7 @@ class SG_Factory {
 	static public $sg_instances = array();
 	
 	public function register( $name, $class_name ) {
-	
+		$name = $newTitle = str_replace( ' ' , '_', $name );
 		self::$sg_instances[$name] = $class_name;
 
 	}

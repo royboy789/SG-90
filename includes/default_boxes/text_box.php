@@ -1,8 +1,7 @@
 <?php
 
 class sg_text_box extends StyleGuideSection {
-	public $sg_title = 'Text';
-	
+
 	public function admin( $post ) {
 		$post_id = $post->ID;
 		echo '<h2>'.$this->sg_admin_title.'</h2>';		
