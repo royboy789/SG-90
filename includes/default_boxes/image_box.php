@@ -125,7 +125,7 @@ class sg_image_box extends StyleGuideSection {
 							$html .= '<div class="col-md-3 text-center">';
 								$html .= '<img class="img-responsive" data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
 							$html .= '</div>';
-							if( $i%4 == 0 ) { $html .= '</div><div class="row">'; }
+							if( $i%5 == 0 ) { $html .= '</div><div class="row">'; }
 						
 						}
 						$html .= '</div>';
