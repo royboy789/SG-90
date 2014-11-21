@@ -1,6 +1,9 @@
 <?php
 
-class sg_button_box extends StyleGuideSection {
+class sg_button_box implements StyleGuideSection {
+
+	public $sg_admin_title = 'Buttons';
+	public $sg_view_scripts = array();
 	
 	public function admin( $post ) {
 		$post_id = $post->ID;
@@ -32,7 +35,6 @@ class sg_button_box extends StyleGuideSection {
 	
 }	
 
-$init = new SG_Factory();
-$init->register( 'Buttons', 'sg_button_box' );
+$SG_Factory->register( 'sg_button_box' );
 
 ?>

@@ -1,7 +1,8 @@
 <?php
 
-class sg_new_box extends StyleGuideSection {
-	public $sg_title = 'Test';
+class sg_new_box implements StyleGuideSection {
+	$this->sg_admin_title = 'Test';
+	$this->sg_view_scripts = array();
 	
 	public function admin( $post ) {
 		$post_id = $post->ID;
@@ -18,10 +19,8 @@ class sg_new_box extends StyleGuideSection {
 	public function view( $post_id ) {
 		echo get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_newBox', true ).'<br>';
 	}
-	
-	
 
-}	
+}
 
-//new sg_new_box( 'New Box' );
+// $SG_Factory->register( 'sg_new_box' );
 ?>
