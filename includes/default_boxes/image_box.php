@@ -16,9 +16,6 @@ class sg_image_box extends StyleGuideSection {
 		/** ADMIN SCRIPTS **/
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
 		
-		/** MODAL SCRIPTS **/
-		add_action( 'wp_enqueue_scripts', array( $this, 'modalScripts' ) );
-		
 		parent::__construct( $title, $array );
 	}
 	
