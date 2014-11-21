@@ -4,6 +4,7 @@ abstract class StyleGuideSection {
 	
 	public $sg_post;
 	public $sg_admin_title = 'Title';
+	public $sg_view_scripts = array();
 	
 	/*
 	IF YOU MODIFY THE CONSTRUCT FUNCTION MAKE SURE TO CALL
@@ -38,8 +39,31 @@ class SG_Factory {
 	public function register( $name, $class_name ) {
 		$name = $newTitle = str_replace( ' ' , '_', $name );
 		self::$sg_instances[$name] = $class_name;
-
 	}
+	
+	
 
+}
+
+class SG_Register {
+	
+	function __construct() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'allScripts' ) );
+	}
+	
+	function allScripts() {
+		foreach( SG_Factory::$sg_instances as $key => $class ):
+			$class = new $class('','');
+			if( !empty( $class->sg_view_scripts ) ):
+				foreach( $class->sg_view_scripts as $key => $value ){
+					if( strpos( $value, '.js' ) && strpos( $value, '.js' ) > 1 ):
+						wp_register_script( $key, $value, array( 'jquery' ), null, true );
+					else:
+						wp_register_style( $key, $value, '', '1.0', 'all' );
+					endif;
+				}
+			endif;
+		endforeach;
+	}
 }
 ?>

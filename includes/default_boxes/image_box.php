@@ -1,20 +1,19 @@
 <?php
 
-add_action('wp_enqueue_scripts', 'modalScripts' );
-
-function modalScripts() {
-	wp_enqueue_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), '1.0', false );
-	wp_enqueue_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
-}
-
-
 class sg_image_box extends StyleGuideSection {
+	
 	
 	function __construct( $title, $array ){
 		global $post;
 		
 		/** ADMIN SCRIPTS **/
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
+		
+		/** VIEW SCRIPS **/
+		$this->sg_view_scripts = array( 
+			'_sg_modalJS'  => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js',
+			'_sg_modalCSS' => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css'
+		);
 		
 		parent::__construct( $title, $array );
 	}
@@ -155,6 +154,8 @@ class sg_image_box extends StyleGuideSection {
 		}
 		
 		echo $html;
+		wp_print_scripts( '_sg_modalJS' );
+		wp_print_styles( '_sg_modalCSS' );
 	}
 	
 	

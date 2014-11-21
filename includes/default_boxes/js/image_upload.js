@@ -36,14 +36,12 @@ $(document).ready( function($){
 	
 	$('body').on('click', '.addImage', function(e) {
 		e.preventDefault();
-		var first = $('#' + $(this).data('box') + ' .imageContainer:first'),
-		last = $('#' + $(this).data('box') + ' .imageContainer:last');
-		
-		console.log( first );
+		var first = $('#' + $(this).data('box') + ' .imageContainer:first');
 		
 		first.find('a.removeImage').show();
 		first.clone().appendTo('#' + $(this).data('box'));
 		first.find('a.removeImage').hide();
+		var last = $('#' + $(this).data('box') + ' .imageContainer:last');
 		last.find('input').val('');
 	});
 	
