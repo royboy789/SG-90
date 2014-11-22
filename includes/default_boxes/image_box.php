@@ -6,8 +6,6 @@ class sg_image_box implements StyleGuideSection {
 		$this->sg_title = 'Image Box';
 		$this->sg_admin_title = $title;
 		
-		global $post;
-		
 		/** ADMIN SCRIPTS **/
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
 		
