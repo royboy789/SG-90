@@ -1,9 +1,11 @@
 <?php
 
-class sg_image_box extends StyleGuideSection {
+class sg_image_box implements StyleGuideSection {
+	$this->sg_admin_title = 'Image Box';
+	$this->sg_view_scripts = array();
 	
-	
-	function __construct( $title, $array ){
+	function __construct(){
+		// @TODO: What does this do?
 		global $post;
 		
 		/** ADMIN SCRIPTS **/
@@ -14,8 +16,6 @@ class sg_image_box extends StyleGuideSection {
 			'_sg_modalJS'  => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js',
 			'_sg_modalCSS' => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css'
 		);
-		
-		parent::__construct( $title, $array );
 	}
 	
 	function metaScripts() {
@@ -157,11 +157,8 @@ class sg_image_box extends StyleGuideSection {
 		wp_print_scripts( '_sg_modalJS' );
 		wp_print_styles( '_sg_modalCSS' );
 	}
-	
-	
 
-}	
+}
 
-$init = new SG_Factory();
-$init->register( 'Image Box', 'sg_image_box' );
+$SG_Factory->register( 'sg_image_box' );
 ?>

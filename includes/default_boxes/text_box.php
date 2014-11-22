@@ -1,6 +1,8 @@
 <?php
 
-class sg_text_box extends StyleGuideSection {
+class sg_text_box implements StyleGuideSection {
+	$this->sg_admin_title = 'Text Box';
+	$this->sg_view_scripts = array();
 
 	public function admin( $post ) {
 		$post_id = $post->ID;
@@ -15,11 +17,8 @@ class sg_text_box extends StyleGuideSection {
 		$content = get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_textBox', true );
 		echo nl2br( $content );
 	}
-	
-	
 
-}	
+}
 
-$init = new SG_Factory();
-$init->register( 'Text Box', 'sg_text_box' );
+$SG_Factory->register( 'sg_text_box' );
 ?>

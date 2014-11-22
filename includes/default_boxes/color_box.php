@@ -1,9 +1,11 @@
 <?php
-class sg_color_box extends StyleGuideSection {
+class sg_color_box implements StyleGuideSection {
+
+	public $sg_admin_title = 'Colors';
+	public $sg_view_scripts = array();
 	
-	function __construct( $title ){
+	function __construct(){
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
-		parent::__construct( $title );
 	}
 
 	function metaScripts() {
@@ -137,7 +139,5 @@ class sg_color_box extends StyleGuideSection {
 	}
 }
 
-$init = new SG_Factory();
-$init->register( 'Colors', 'sg_color_box' );
-
+$SG_Factory->register( 'sg_color_box' );
 ?>
