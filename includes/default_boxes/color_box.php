@@ -94,7 +94,6 @@ class sg_color_box implements StyleGuideSection {
 		$colors = get_post_meta( $sg_post_id, '_sg_'.$this->sg_admin_title.'_', false );
 		if( $colors ):
 			$colors = $colors[0];
-			$template .= '<div class="row"><div class="col-md-12"><h2 class="text-center">Colors: '.$this->sg_admin_title.'</h2></div></div>';
 			$template .= '<div class="row sg_colors">';
 			$i = 0;
 			while( count( $colors['colorTitle'] ) -1 >= $i ) {
