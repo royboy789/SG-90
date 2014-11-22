@@ -89,7 +89,7 @@ class sg_image_box implements StyleGuideSection {
 		$layout =	get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image_layout', true );
 		
 		if( get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image', true ) ) {
-			$html = '<div class="container imageViewWrapper ';
+			$html = '<div class="imageViewWrapper ';
 				if( get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image_modal', true ) == 'on' ):
 					$html .= 'lightboxOn';
 				else:
