@@ -2,8 +2,10 @@
 
 class sg_button_box implements StyleGuideSection {
 
-	public $sg_admin_title = 'Buttons';
-	public $sg_view_scripts = array();
+	function __construct(){
+		$this->sg_title = 'Buttons Box';
+		$this->sg_admin_title = 'Buttons';
+	}
 	
 	public function admin( $post ) {
 		$post_id = $post->ID;

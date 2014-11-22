@@ -1,8 +1,10 @@
 <?php
 
 class sg_new_box implements StyleGuideSection {
-	$this->sg_admin_title = 'Test';
-	$this->sg_view_scripts = array();
+	
+	function __construct() {
+		$this->sg_admin_title = 'Test';
+	}
 	
 	public function admin( $post ) {
 		$post_id = $post->ID;

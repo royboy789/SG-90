@@ -47,12 +47,10 @@ function adminScripts() {
 }
 
 /** INCLUDE ALL DEFAULT BOXES  **/
+
 foreach (glob( SG90_PLUGINPATH."/includes/default_boxes/*.php") as $filename) {
 	require $filename;
 }
-
-/** REGISTER SCRIPS **/
-new SG_Register();
 
 function get_attach_id( $url ) {
 	$parsed_url  = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );

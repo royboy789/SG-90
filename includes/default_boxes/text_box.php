@@ -1,8 +1,11 @@
 <?php
 
 class sg_text_box implements StyleGuideSection {
-	$this->sg_admin_title = 'Text Box';
-	$this->sg_view_scripts = array();
+	
+	function __construct() {
+		$this->sg_title = 'Text Box';
+		$this->sg_admin_title = 'Text Box';
+	}
 
 	public function admin( $post ) {
 		$post_id = $post->ID;

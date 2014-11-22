@@ -13,7 +13,7 @@ class styleGuideShortcodes {
 	}
 	
 	function sgShortcode( $atts ) {
-		global $sg90_shortcode_html;
+		global $sg90_shortcode_html, $SG_Factory;
 		
 		$a = shortcode_atts( array(
 			'id' => ''
@@ -33,8 +33,8 @@ class styleGuideShortcodes {
 			
 			foreach( $sections[0] as $section ) {
 				$className = str_replace( '_new-sg-', '', $section['class'] );
-				$class = SG_Factory::$sg_instances[$className];
-				$newMeta = new $class( $section['title'], false );
+				$newMeta = new $SG_Factory->sg_instances[$className];
+					$newMeta->sg_admin_title = $section['title'];
 				$newMeta->view( $sg->ID );
 			}
 		else:			

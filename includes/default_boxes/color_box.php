@@ -1,10 +1,9 @@
 <?php
 class sg_color_box implements StyleGuideSection {
-
-	public $sg_admin_title = 'Colors';
-	public $sg_view_scripts = array();
 	
 	function __construct(){
+		$this->sg_title = 'Color Box';
+		$this->sg_admin_title = 'Colors';
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
 	}
 

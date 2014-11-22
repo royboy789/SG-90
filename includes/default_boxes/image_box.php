@@ -1,21 +1,24 @@
 <?php
 
 class sg_image_box implements StyleGuideSection {
-	$this->sg_admin_title = 'Image Box';
-	$this->sg_view_scripts = array();
 	
-	function __construct(){
-		// @TODO: What does this do?
+	function __construct( $title = 'Image Box' ){
+		$this->sg_title = 'Image Box';
+		$this->sg_admin_title = $title;
+		
 		global $post;
 		
 		/** ADMIN SCRIPTS **/
 		add_action( 'admin_enqueue_scripts', array( $this, 'metaScripts' ) );
 		
 		/** VIEW SCRIPS **/
-		$this->sg_view_scripts = array( 
-			'_sg_modalJS'  => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js',
-			'_sg_modalCSS' => SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css'
-		);
+		add_action( 'wp_enqueue_scripts', array( $this, 'modalScripts' ) );
+		
+	}
+	
+	function modalScripts() {
+		wp_register_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), null, true );
+		wp_register_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
 	}
 	
 	function metaScripts() {
@@ -27,8 +30,6 @@ class sg_image_box implements StyleGuideSection {
 		$post_id = $post->ID;
 		$this->sg_admin_title = str_replace( ' ', '_', $this->sg_admin_title );
 		$html = '<div class="imageWrapper" id="_sgBox_'.$this->sg_admin_title.'">';
-			$html .= '<h2>'.$this->sg_admin_title.'</h2>';
-
 			$html .= '<h2>Modal</h2>';
 			$html .= '<p><em>Load images in modal on click</em></p>';
 			$html .= '<select type="checkbox" name="_sg_'.$this->sg_admin_title.'_media_image_modal">';
@@ -90,7 +91,7 @@ class sg_image_box implements StyleGuideSection {
 		$layout =	get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image_layout', true );
 		
 		if( get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image', true ) ) {
-			$html = '<div class="imageViewWrapper ';
+			$html = '<div class="container imageViewWrapper ';
 				if( get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_media_image_modal', true ) == 'on' ):
 					$html .= 'lightboxOn';
 				else:
@@ -113,20 +114,23 @@ class sg_image_box implements StyleGuideSection {
 						$html .= '<img data-img-url="'.$images[0].'" src="'.$images[0].'" alt="SG-90 Style Guide Creator" />';
 					$html .= '</div></div>';
 					
-					$i = 0;
+					
 					if( $images[1] ):
 						$html .= '<div class="row">';
+						$i = 0;
 						foreach( $images as $img ) {
-							if( $i++ === 0 || empty( $img ) ) continue ;
-							
-							$imageID = get_attach_id( $img );
-							$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
-							$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
-							$html .= '<div class="col-md-3 text-center">';
-								$html .= '<img class="img-responsive" data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
-							$html .= '</div>';
-							if( $i%5 == 0 ) { $html .= '</div><div class="row">'; }
-						
+							if( $i == 0 || empty( $img ) ) : 
+								$html .= ''; 
+							else :
+								$imageID = get_attach_id( $img );
+								$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+								$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+								$html .= '<div class="col-md-3 text-center">';
+									$html .= '<img class="img-responsive" data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
+								$html .= '</div>';
+								if(  $i%4 === 0 ) { $html .= '</div><div class="row">'; }
+							endif;
+							$i++;
 						}
 						$html .= '</div>';
 					endif;
@@ -151,9 +155,8 @@ class sg_image_box implements StyleGuideSection {
 				
 			}
 			$html .= '</div>';
+			echo $html;
 		}
-		
-		echo $html;
 		wp_print_scripts( '_sg_modalJS' );
 		wp_print_styles( '_sg_modalCSS' );
 	}

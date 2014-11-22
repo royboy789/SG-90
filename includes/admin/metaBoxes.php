@@ -1,5 +1,4 @@
 <?php
-
 class _sg_meta_boxes {
 	
 	function __construct() {
@@ -59,8 +58,9 @@ class _sg_meta_boxes {
 	}
 	
 	function styleGuideSections() {
+		global $SG_Factory;
 		echo '<label for="_new-title">Title:</label><br/><input name="_new-title" placeholder="Title" id="newBoxTitle" /><Br/><br/>';
-		foreach( SG_Factory::$sg_instances as $key => $value ) {
+		foreach( $SG_Factory->sg_instances as $key => $value ) {
 			echo ' <button name="_new-sg-' . $key . '" class="button button-primary newBox" value="1">New ' . str_replace( '_', ' ', $key ) . '</button>'; 
 		}
 		echo ' <button name="_delete-all-sg" class="button button-secondary deleteAll" value="1">Reset Style Guide</button>'; 
@@ -78,6 +78,8 @@ class _sg_meta_boxes {
 	}
 	
 	function _metaInit() {
+		global $SG_Factory;
+		
 		add_meta_box( 
 			'Add Style Guide Section', 
 			__( 'Add Style Guide Section', 'myplugin_textdomain' ), 
@@ -104,18 +106,19 @@ class _sg_meta_boxes {
 			foreach( $sections[0] as $section ) {
 				$sectionClass = str_replace( '_new-sg-', '', $section['class'] );
 				
-				$class = SG_Factory::$sg_instances[$sectionClass];
-				$newMeta = new $class( $section['title'], false );
-				
-				add_meta_box( 
-					$section['title'] . 'Section: '. $i, 
-					__( str_replace( '_', ' ', $section['title'] ), 'myplugin_textdomain' ), 
-					array( $this, '_adminContent' ),
-					'style-guides', 
-					'normal', 
-					'default',
-					array( 'classFunc' => $newMeta, 'index' => $i )
-				);
+				if( isset( $SG_Factory->sg_instances[$sectionClass] ) ):
+					$newMeta = new $SG_Factory->sg_instances[$sectionClass];
+					$newMeta->sg_admin_title = $section['title'];
+					add_meta_box( 
+						$section['title'] . 'Section: '. $i, 
+						__( str_replace( '_', ' ', $section['title'] ), 'myplugin_textdomain' ), 
+						array( $this, '_adminContent' ),
+						'style-guides', 
+						'normal', 
+						'default',
+						array( 'classFunc' => $newMeta, 'index' => $i )
+					);
+				endif;
 				$i++;	
 			}
 		endif;

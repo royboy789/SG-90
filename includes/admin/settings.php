@@ -46,6 +46,7 @@ class _sg_settings {
 					} else {
 						if( is_array( $value ) )
 							$value = array_filter( $value );
+						
 						update_post_meta( $post_id, $key, $value );
 					}
 				}
