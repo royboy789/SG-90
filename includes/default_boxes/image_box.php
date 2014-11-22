@@ -138,9 +138,12 @@ class sg_image_box implements StyleGuideSection {
 					$html .= '<div class="row">';
 						$i = 1;
 						foreach( $images as $img ) {
+							$imageID = get_attach_id( $img );
+							$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+							$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
 							if( !empty( $img ) ):
 								$html .= '<div class="col-md-3 text-center">';
-									$html .= '<img class="img-responsive" data-img-url="'.$img.'" src="'.$img.'" alt="SG-90 Style Guide Creator" />';
+									$html .= '<img class="img-responsive" data-img-url="'.$imgFull[0].'" src="'.$imgMed[0].'" alt="SG-90 Style Guide Creator" />';
 								$html .= '</div>';
 								if( $i%4 == 0 ) { $html .= '</div><div class="row">'; }
 							endif;
