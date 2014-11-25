@@ -11,6 +11,7 @@
 
 define( 'SG90_PLUGINPATH', plugin_dir_path( __FILE__ ) );
 define( 'SG90_PLUGINURL', plugins_url( '', __FILE__ ) );
+define( 'SG90_CORE', plugin_dir_path( __FILE__ ).'/includes/classes/core.php' );
 
 /** CORE CLASS & FACTORY **/
 require('includes/classes/core.php');
@@ -67,5 +68,16 @@ function get_attach_id( $url ) {
 	$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}posts WHERE guid RLIKE %s;", $parsed_url[1] ) );
 	return $attachment[0];
 }
+
+function ensure_loaded_first( array $plugins ) {
+    $key = array_search( plugin_basename( __FILE__ ), $plugins);
+    if (false !== $key) {
+        array_splice($plugins, $key, 1);
+        array_unshift($plugins, plugin_basename( __FILE__ ));
+    }
+    return $plugins;
+}
+
+add_filter('pre_update_option_active_plugins', 'ensure_loaded_first');
 
 ?>

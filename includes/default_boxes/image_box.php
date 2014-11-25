@@ -49,11 +49,15 @@ class sg_image_box implements StyleGuideSection {
 			
 			$html .= '<label for="layout_showcase"><input id="layout_showcase" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_showcase"';
 				if( $layout === 'layout_showcase' || $layout === '' ) { $html .= 'checked="checked"'; }
-			$html .= '> Showcase</label><br/>';
+			$html .= '> Showcase</label> &nbsp;&nbsp;&nbsp;';
 			
 			$html .= '<label for="layout_col"><input id="layout_col" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_col"';
 				if( $layout === 'layout_col' ) { $html .= 'checked="checked"'; }
-			$html .= '> 4 Column</label><br/>';
+			$html .= '> 4 Columns</label> &nbsp;&nbsp;&nbsp;';
+			
+			$html .= '<label for="layout_off"><input id="layout_off" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_two_col"';
+				if( $layout === 'layout_two_col' ) { $html .= 'checked="checked"'; }
+			$html .= '> 2 Columns</label> <br/><br/>';
 			
 			$html .= '<label for="layout_off"><input id="layout_off" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_off"';
 				if( $layout === 'layout_off' ) { $html .= 'checked="checked"'; }
@@ -146,6 +150,24 @@ class sg_image_box implements StyleGuideSection {
 									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
 								$html .= '</div>';
 								if( $i%4 == 0 ) { $html .= '</div><div class="row">'; }
+							endif;
+							$i++;
+						}
+						$html .= '</div>';
+				break;
+				
+				case 'layout_two_col' :
+					$html .= '<div class="row">';
+						$i = 1;
+						foreach( $images as $img ) {
+							$imageID = get_attach_id( $img );
+							$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+							$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							if( !empty( $img ) ):
+								$html .= '<div class="col-md-6 text-center">';
+									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
+								$html .= '</div>';
+								if( $i%3 == 0 ) { $html .= '</div><div class="row">'; }
 							endif;
 							$i++;
 						}

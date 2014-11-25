@@ -128,7 +128,7 @@ class sg_color_box implements StyleGuideSection {
 						$template .= '</p>';
 					$template .= '</div></div>';		
 				$template .= '</div></div>';
-				if( [$i-1]%3 == 0 && $i - 1 !== 0 ) { $template .= '</div><div class="row sg_colors">'; }
+				if( ($i-1)%3 == 0 && $i - 1 !== 0 ) { $template .= '</div><div class="row sg_colors">'; }
 				$i++;
 			}
 			$template .= '</div>';
