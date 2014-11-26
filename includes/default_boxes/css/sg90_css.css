@@ -8,6 +8,7 @@
 a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
 
 
+.sg_colors { margin-bottom: 20px; margin-top: 20px; }
 .sg_color {
 	border: 1px solid #e5e5e5;
 	border-radius: 5px;

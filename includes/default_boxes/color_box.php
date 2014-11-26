@@ -96,7 +96,7 @@ class sg_color_box implements StyleGuideSection {
 			$colors = $colors[0];
 			$template .= '<div class="row sg_colors">';
 			$i = 0;
-			while( count( $colors['colorTitle'] ) -1 >= $i ) {
+			while( count( $colors['colorTitle'] ) - 1 >= $i ) {
 				$template .= '';
 				$template .='<div class="col-md-4"><div class="sg_color">';
 					$template .= '<div class="colorBox" style="background:'.$colors['colorHex'][$i].'"></div>';
@@ -128,8 +128,10 @@ class sg_color_box implements StyleGuideSection {
 						$template .= '</p>';
 					$template .= '</div></div>';		
 				$template .= '</div></div>';
-				if( ($i-1)%3 == 0 && $i - 1 !== 0 ) { $template .= '</div><div class="row sg_colors">'; }
-				$i++;
+			$i = $i + 1;
+			if( $i % 3 === 0 && $i !== 0 ) { $template .= '</div><div class="row sg_colors">'; }
+			$i = $i - 1;
+			$i++;
 			}
 			$template .= '</div>';
 		endif;
