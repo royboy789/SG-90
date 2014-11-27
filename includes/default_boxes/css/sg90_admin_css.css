@@ -8,3 +8,5 @@
 a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
 
 #poststuff h3 { cursor: default !important; }
+
+.wp-core-ui .button, .wp-core-ui .button-primary.newBox { margin: 5px; margin-left: 0; min-width: 135px; }
