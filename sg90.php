@@ -45,8 +45,8 @@ if( is_admin() )
 
 function adminScripts() {
 	global $post;
-	if( $post->post_type === 'style-guides' ):
-		wp_deregister_script('postbox');
+	if( isset( $post ) && $post->post_type === 'style-guides' ):
+		wp_enqueue_script( 'sg90_admin_js', SG90_PLUGINURL.'/includes/default_boxes/js/sg90_admin_js.js', array( 'jquery' ), '1.0', true );
 		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_admin_css.css', '', '1.0', 'all' );
 	endif;
 }
