@@ -44,8 +44,12 @@ if( is_admin() )
 	add_action( 'admin_enqueue_scripts', 'adminScripts' );
 
 function adminScripts() {
+	global $post;
+	if( $post->post_type === 'style-guides' )
+		wp_deregister_script('postbox');
 	wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_admin_css.css', '', '1.0', 'all' );
 }
+
 
 /** INCLUDE ALL DEFAULT BOXES  **/
 
