@@ -18,7 +18,7 @@ a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left:
 .sg_color strong.text-center { display: block; font-size: 20px; margin: 5px 0; }
 .sg_color .colorDefs p { padding: 0 15px; }
 
-.textBoxWrapper { margin: 0 20px; }
+.textBoxWrapper { margin: 20px 0; }
 
 /* Greg's Style Below This Line */
 
