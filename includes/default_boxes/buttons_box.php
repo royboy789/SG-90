@@ -30,7 +30,7 @@ class sg_button_box implements StyleGuideSection {
 		
 		echo '<div class="row"><div class="col-md-12 text-center">';
 		foreach( $buttons as $key => $value ){
-			echo '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:10px 0;">'.$value.'</div><br/>';	
+			echo '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:0;">'.$value.'</div><br/>';	
 		}
 		echo '</div></div>';
 	}
