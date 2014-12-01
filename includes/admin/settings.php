@@ -145,10 +145,10 @@ class _sg_settings {
 		    		echo '<tr><td colspan="2" align="center"><div>';
 		    			include( 'text/sg90_top_column.php' );
 		    			echo '</div><div class="text-center"><a class="button button-primary" href="'.admin_url('post-new.php?post_type=style-guides').'">Create SG-90 Style Guide</a>';
-		    		echo '</div></td></td>';
+		    		echo '</div></td></tr>';
 		    		echo '<tr>';
 		    			echo '<th><h3>SG-90 Style Guide Creator</h3></th>';
-		    			echo '<th><h3>SG-90 Tutorial Video</h3></th>';
+		    			echo '<th><h3>SG-90 Tutorials</h3></th>';
 		    		echo '<tr>';
 		    	echo '</thead>';
 		    	echo '<tbody>';		    		
