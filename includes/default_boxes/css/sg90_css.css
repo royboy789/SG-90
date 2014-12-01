@@ -29,5 +29,6 @@ a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left:
 /* MOBILE */
 @media only screen and (max-width: 992px) {
 	#sg90Wrapper * { text-align: center }
+	#sg90Wrapper img.img-responsive { display: inline-block; }
 	.imageViewWrapper .col-md-6 { padding: 20px 0; }
 }
