@@ -27,6 +27,7 @@ class styleGuideShortcodes {
 			
 			//delete_post_meta( $sg->ID, '_sg_sections' );
 			
+			echo '<div id="sg90Wrapper">';
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
 			
 			if( empty( $sections ) ) { return '<p>This Style Guide is empty, add some Style Guide Sections</p>'; }
@@ -37,6 +38,7 @@ class styleGuideShortcodes {
 					$newMeta->sg_admin_title = $section['title'];
 				$newMeta->view( $sg->ID );
 			}
+			echo '</div>';
 		else:			
 			return '<p>Cannot find a Style Guide with that ID</p>';
 		
