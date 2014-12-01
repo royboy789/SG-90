@@ -25,3 +25,8 @@ a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left:
 
 .col-md-3 {padding: 20px 10px;}
 .col-md-12 {padding: 20px 0;}
+
+/* MOBILE */
+@media only screen and (max-width: 992px) {
+	.imageViewWrapper .col-md-6 { padding: 20px 0; }
+}
