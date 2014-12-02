@@ -33,6 +33,7 @@ require('includes/admin/activation.php');
 
 /** INIT CLASSES **/
 new sgInit();
+new sg90Activation();
 new _sg_settings();
 new _sg_meta_boxes();
 new styleGuideShortcodes();
