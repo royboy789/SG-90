@@ -170,7 +170,8 @@ class _sg_settings {
 		if( isset( $_POST['_sg_bootstrap'] ) ) {
 			update_option( '_sg_bootstrap', $_POST['_sg_bootstrap'] );
 		}
-		$_sg_bootstrap = get_option( '_sg_bootstrap', "on" );
+		
+		$_sg_bootstrap = get_option( '_sg_bootstrap' );
 		echo '<h2>SG-90 Settings</h2>';
 		echo '<div id="poststuff">';
 			echo '<div class="postbox-container">';

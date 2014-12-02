@@ -3,7 +3,7 @@
  * Plugin Name: SG-90 - Style Guide Creator
  * Plugin URI: http://arcctrl.com/plugins/sg-90
  * Description: This plugin will allow you to easily create style guide for your clients
- * Version: 1.0
+ * Version: 1.0.2.1
  * Author: ARC(CTRL)
  * Author URI: http://www.arcctrl.com
  * License: GPL2

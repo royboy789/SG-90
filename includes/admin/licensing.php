@@ -54,7 +54,7 @@ class pluginLicense {
                                 <label class="description" for="sg90_license_key"><?php _e('Enter your license key'); ?></label>
                             </td>
                         </tr>
-                        <?php if( false !== $license ) { ?>
+                        <?php if( false !== $license || empty( $license ) ) { ?>
                             <tr valign="top">   
                                 <th scope="row" valign="top">
                                     <?php _e('Activate License'); ?>
@@ -94,7 +94,7 @@ class pluginLicense {
     function licenseActivate() {
         // listen for our activate button to be clicked
         if( isset( $_POST['edd_license_activate'] ) ) {
-
+			
             // run a quick security check 
             if( ! check_admin_referer( 'edd_sample_nonce', 'edd_sample_nonce' ) )   
                 return; // get out if we didn't click the Activate button
@@ -179,7 +179,7 @@ class pluginLicense {
 		
         // setup the updater
         $edd_updater = new EDD_SL_Plugin_Updater( EDD_SAMPLE_STORE_URL, $location, array( 
-            'version'   => '1.0',
+            'version'   => '1.0.2.1',
             'license'   => $license_key,
             'item_name' => EDD_SAMPLE_ITEM_NAME,
             'author'    => 'Arc(CTRL)',
@@ -206,8 +206,8 @@ class pluginLicense {
 			return false;
 	
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-		
-		if( !$license_data->license == 'valid' ) {
+
+		if( $license_data->license !== 'valid' ) {
 			add_action( 'admin_notices', function() {
 				echo '<div class="error"><p><strong>sg90 is not licensed</strong> you can get your license from the order history page. <a href="/wp-admin/admin.php?page=sg90-license">Activate sg90</a> to receive future updates</p></div>';
 			} );
