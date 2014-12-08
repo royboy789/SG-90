@@ -125,8 +125,13 @@ class sg_image_box implements StyleGuideSection {
 								$html .= ''; 
 							else :
 								$imageID = get_attach_id( $img );
-								$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
-								$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+								if( !is_null( $imageID ) ){
+									$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+									$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+								} else {
+									$imageFull = array( $img );
+									$imageMed = array( $img );
+								}
 								$html .= '<div class="col-md-3 text-center">';
 									$html .= '<img class="img-responsive" data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
 								$html .= '</div>';
@@ -143,8 +148,13 @@ class sg_image_box implements StyleGuideSection {
 						$i = 1;
 						foreach( $images as $img ) {
 							$imageID = get_attach_id( $img );
-							$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
-							$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							if( !is_null( $imageID ) ){
+								$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+								$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							} else {
+								$imageFull = array( $img );
+								$imageMed = array( $img );
+							}
 							if( !empty( $img ) ):
 								$html .= '<div class="col-md-3 text-center">';
 									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
@@ -161,8 +171,13 @@ class sg_image_box implements StyleGuideSection {
 						$i = 1;
 						foreach( $images as $img ) {
 							$imageID = get_attach_id( $img );
-							$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
-							$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							if( !is_null( $imageID ) ){
+								$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+								$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							} else {
+								$imageFull = array( $img );
+								$imageMed = array( $img );
+							}
 							if( !empty( $img ) ):
 								$html .= '<div class="col-md-6 text-center">';
 									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';

@@ -209,7 +209,7 @@ class pluginLicense {
 
 		if( $license_data->license !== 'valid' ) {
 			add_action( 'admin_notices', function() {
-				echo '<div class="error"><p><strong>sg90 is not licensed</strong> you can get your license from the order history page. <a href="/wp-admin/admin.php?page=sg90-license">Activate sg90</a> to receive future updates</p></div>';
+				echo '<div class="error"><p><strong>SG-90 is not licensed</strong> you can get your license from the order history page. <a href="/wp-admin/admin.php?page=sg90-license">Activate SG-90</a> to receive future updates</p></div>';
 			} );
 		}
 	}

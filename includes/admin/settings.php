@@ -1,4 +1,5 @@
 <?php
+
 class _sg_settings {
 
 	function __construct() {

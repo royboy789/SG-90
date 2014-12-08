@@ -1,0 +1,38 @@
+ul.sg_templates {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+
+ul.sg_templates li {
+	display: inline-block;
+	width: 8%;
+	margin: 2.5%;
+	vertical-align: top;
+	white-space: normal;
+}
+
+ul.sg_templates li a {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid transparent;
+	color: black;
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	padding: 10px;
+	text-align: center;
+}
+
+ul.sg_templates li a.chosen {
+	border: 1px solid red;
+}
+
+ul.sg_templates li img {
+	height: auto;
+	max-width: 100% !important;
+}
+
+form input { display: block; width: auto; }

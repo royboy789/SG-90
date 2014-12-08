@@ -31,6 +31,9 @@ require('includes/admin/metaBoxes.php');
 require('includes/admin/licensing.php');
 require('includes/admin/activation.php');
 
+/** TEMPLATE class */
+require('includes/admin/templateBuilder/sg_template_core.php');
+
 /** INIT CLASSES **/
 new sgInit();
 new sg90Activation();
@@ -39,6 +42,8 @@ new _sg_meta_boxes();
 new styleGuideShortcodes();
 new pluginLicense();
 
+/** TEMPLATE CLASS **/
+new _SG_Template_Core();
 
 /** ADMIN CSS **/
 if( is_admin() )
