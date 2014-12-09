@@ -25,9 +25,7 @@ class styleGuideShortcodes {
 		
 		if( $sg && $sg->post_type == 'style-guides' ) :
 			
-			//delete_post_meta( $sg->ID, '_sg_sections' );
-			
-			echo '<div id="sg90Wrapper">';
+			$html = '<div id="sg90Wrapper">';
 			$sections = get_post_meta( $sg->ID, '_sg_sections', false );
 			
 			if( empty( $sections ) ) { return '<p>This Style Guide is empty, add some Style Guide Sections</p>'; }
@@ -36,9 +34,10 @@ class styleGuideShortcodes {
 				$className = str_replace( '_new-sg-', '', $section['class'] );
 				$newMeta = new $SG_Factory->sg_instances[$className];
 					$newMeta->sg_admin_title = $section['title'];
-				$newMeta->view( $sg->ID );
+				$html .= $newMeta->view( $sg->ID );
 			}
-			echo '</div>';
+			$html .= '</div>';
+			return $html;
 		else:			
 			return '<p>Cannot find a Style Guide with that ID</p>';
 		

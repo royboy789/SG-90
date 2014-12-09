@@ -18,9 +18,11 @@ class sg_text_box implements StyleGuideSection {
 	
 	public function view( $post_id ) {
 		$content = get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_textBox', true );
-		echo '<div class="textBoxWrapper">';
-			echo nl2br( $content );
-		echo '</div>';
+		$template = '<div class="textBoxWrapper">';
+			$template .= nl2br( $content );
+		$template .= '</div>';
+		
+		return $template;
 	}
 
 }

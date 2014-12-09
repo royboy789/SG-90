@@ -135,7 +135,7 @@ class sg_color_box implements StyleGuideSection {
 			}
 			$template .= '</div>';
 		endif;
-		echo $template;
+		return $template;
 	}
 }
 

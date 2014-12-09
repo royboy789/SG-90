@@ -193,7 +193,7 @@ class sg_image_box implements StyleGuideSection {
 				
 			}
 			$html .= '</div>';
-			echo $html;
+			return $html;
 		}
 		wp_print_scripts( '_sg_modalJS' );
 		wp_print_styles( '_sg_modalCSS' );

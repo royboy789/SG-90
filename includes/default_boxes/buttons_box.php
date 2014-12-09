@@ -28,11 +28,12 @@ class sg_button_box implements StyleGuideSection {
 		$buttons = array( 'btn-lg' => 'Button Large', 'btn-primary' => 'Button Primary', 'btn-sm' => 'Button Small' );
 		$color = get_post_meta( $post_id, '_sg_'.$this->sg_admin_title.'_button', true );
 		
-		echo '<div class="row"><div class="col-md-12 text-center">';
+		$template = '<div class="row"><div class="col-md-12 text-center">';
 		foreach( $buttons as $key => $value ){
-			echo '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:5px 0;">'.$value.'</div><br/>';	
+			$template .= '<div class="btn btn-primary '.$key.'" style="background-color:'.$color.';margin:5px 0;">'.$value.'</div><br/>';	
 		}
-		echo '</div></div>';
+		$template .= '</div></div>';
+		return $template;
 	}
 	
 }	
