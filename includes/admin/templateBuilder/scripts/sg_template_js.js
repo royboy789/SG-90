@@ -9,7 +9,7 @@ $(document).ready(function(){
 	});
 	
 	$('form#newSG').on('submit', function(e) {
-		if( $('input[name="_sg_template"]').length < 2 ) {
+		if( $('input[name="_sg_template"]').val().length < 2 ) {
 			e.preventDefault();
 			$(this).append( '<p style="color:red">Please Choose a Template above</p>' );	
 		}
