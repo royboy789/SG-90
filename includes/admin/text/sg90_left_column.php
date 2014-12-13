@@ -16,7 +16,7 @@ echo '<h3>Buttons</h3>';
 echo '<p>Buttons are an important part of any website especially as a CTA (Click Through Action). Simply add the section and designate a color from your color scheme, and it will generate all the button sizes (with CSS classes) for that color. Add multiple button sections to your style guide for each button color.</p>';
 
 echo '<h3>FREE Google Font Extension</h3>';
-echo '<p>Included with the SG-90 is the free Google Font Extension. When you purchase and download the SG-90 be sure to also download your free copy of the Google font extension. With the SG-90 Google font extension and the Google font API you will have the ability to choose from every font in the Google font collection and display them in your style guide h1, h2, h3, p, and em/italics.</p>';
+echo '<p>Included with the SG-90 is the free <a target="_blank" href="http://arcctrl.com/products/sg-90-google-font-extension/">Google Font Extension</a>. When you purchase and download the SG-90 be sure to also download your free copy of the Google font extension. With the SG-90 Google font extension and the Google font API you will have the ability to choose from every font in the Google font collection and display them in your style guide h1, h2, h3, p, and em/italics.</p>';
 
 
 echo '<h2>Add More Sections</h2>';

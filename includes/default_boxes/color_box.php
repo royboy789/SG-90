@@ -103,7 +103,7 @@ class sg_color_box implements StyleGuideSection {
 					if( isset( $colors['colorTitle'][$i] ) )
 						$template .= '<strong class="text-center">'.$colors['colorTitle'][$i].'</strong>';
 					$template .= '<div class="row colorDefs"><div class="col-xs-12">';
-						$template .= '<p><strong>Hex:</strong>'.$colors['colorHex'][$i].'</p>';
+						$template .= '<p><strong>HEX:</strong>'.$colors['colorHex'][$i].'</p>';
 						$template .= '<p><strong>CMYK:</strong> ';
 							if( isset( $colors['colorC'][$i] ) ) $template .= $colors['colorC'][$i].'/';
 							if( isset( $colors['colorM'][$i] ) ) $template .= $colors['colorM'][$i].'/';

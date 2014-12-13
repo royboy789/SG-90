@@ -1,14 +1,14 @@
-.sg_colors .sg_color {
-	border:1px solid #fafafa;
-	border-radius:5px;
-	margin:0 0 20px;
-	padding:0 0 10px 0
+.sg_colors { margin-bottom: 20px; margin-top: 20px; }
+
+.sg_color {
+	margin: 0 0 20px;
+	padding: 0 0 10px 0;
 }
 
 .sg_colors .sg_color .colorBox {
 	display:block;
 	height:50px;
-	margin:10px 0 10px 0
+	margin:0 0 10px 0
 }
 .sg_colors .sg_color strong {
 	display:block;
@@ -16,7 +16,7 @@
 	margin-top:5px;
 	padding:0 10px
 }
-.sg_color strong.text-center {font-size: 1.25em; margin: 5px 0; }
+.sg_color strong.text-center { margin: 5px 0; }
 .sg_colors .sg_color p {
 	margin:0;
 	padding:0 10px
@@ -27,13 +27,6 @@
 	padding:0
 }
 
-.sg_colors { margin-bottom: 20px; margin-top: 20px; }
-.sg_color {
-	border: 1px solid #e5e5e5;
-	border-radius: 5px;
-	margin: 0 0 20px;
-	padding: 0 0 10px 0;
-}
 .sg_color .colorDefs p { padding: 0 15px; }
 
 .textBoxWrapper,
