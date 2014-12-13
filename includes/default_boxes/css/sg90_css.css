@@ -16,6 +16,7 @@
 	margin-top:5px;
 	padding:0 10px
 }
+.sg_color strong.text-center {font-size: 1.25em; margin: 5px 0; }
 .sg_colors .sg_color p {
 	margin:0;
 	padding:0 10px
@@ -33,7 +34,6 @@
 	margin: 0 0 20px;
 	padding: 0 0 10px 0;
 }
-.sg_color strong.text-center { display: block; font-size: 20px; margin: 5px 0; }
 .sg_color .colorDefs p { padding: 0 15px; }
 
 .textBoxWrapper,
