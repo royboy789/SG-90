@@ -7,7 +7,12 @@
 
 a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
 
+
 #poststuff h3 { cursor: default !important; }
 
 .wp-core-ui .button-primary.newBox,
 .wp-core-ui .button-secondary.deleteAll { margin: 5px; margin-left: 0; min-width: 135px; }
+
+.imageContainer { margin-bottom: 10px; }
+.imageContainer label { display: inline-block; vertical-align: top; width: 550px; }
+a.removeImage { display: inline-block; margin-bottom: 7px; vertical-align: bottom; text-decoration: none; }

@@ -6,28 +6,20 @@
 }
 
 .sg_colors .sg_color .colorBox {
-	display:block;
+	display: block;
 	height:50px;
-	margin:0 0 10px 0
+	margin:0 0 10px 0;
 }
 .sg_colors .sg_color strong {
-	display:block;
+	display: inline-block;
 	font-size:1em;
 	margin-top:5px;
-	padding:0 10px
+	margin-right: 10px;
 }
-.sg_color strong.text-center { margin: 5px 0; }
+.sg_color strong.title { display: block; margin: 5px 0; }
 .sg_colors .sg_color p {
 	margin:0;
-	padding:0 10px
 }
-.sg_colors .sg_color .colorDefs strong {
-	display:inline-block;
-	margin:0 5px 0 0;
-	padding:0
-}
-
-.sg_color .colorDefs p { padding: 0 15px; }
 
 .textBoxWrapper,
 .imageViewWrapper { margin: 20px 0; }

@@ -69,7 +69,7 @@ class sg_image_box implements StyleGuideSection {
 				foreach( $images as $img ) {
 					$html .= '<div class="imageContainer">';
 						$html .= '<label for="_sg_'.$this->sg_admin_title.'_media_image[]" data-for="_sg_'.$this->sg_admin_title.'_media_image[]" class="upload_image"> IMAGE: &nbsp;';
-						$html .= '<input type="text" name="_sg_'.$this->sg_admin_title.'_media_image[]" style="width:30%" placeholder="click to upload" value="'.$img.'" />';
+						$html .= '<input type="text" name="_sg_'.$this->sg_admin_title.'_media_image[]" style="width:99%" placeholder="click to upload" value="'.$img.'" />';
 						$html .= '</label> ';
 						$html .= '<a href="#" class="removeImage" style="color: red">x</a>';
 					$html .= '</div>';		
@@ -77,7 +77,7 @@ class sg_image_box implements StyleGuideSection {
 			}
 			$html .= '<div class="imageContainer">';
 				$html .= '<label for="_sg_'.$this->sg_admin_title.'_media_image[]" data-for="_sg_'.$this->sg_admin_title.'_media_image[]" class="upload_image"> IMAGE: &nbsp;';
-				$html .= '<input type="text" value="" name="_sg_'.$this->sg_admin_title.'_media_image[]" style="width:30%" placeholder="click to upload" />';
+				$html .= '<input type="text" value="" name="_sg_'.$this->sg_admin_title.'_media_image[]" style="width:99%" placeholder="click to upload" />';
 				$html .= '</label> ';
 				$html .= '<a href="#" class="removeImage" style="color: red">x</a>';
 			$html .= '</div>';

@@ -100,9 +100,9 @@ class sg_color_box implements StyleGuideSection {
 				$template .= '';
 				$template .='<div class="col-md-4"><div class="sg_color">';
 					$template .= '<div class="colorBox" style="background:'.$colors['colorHex'][$i].'"></div>';
-					if( isset( $colors['colorTitle'][$i] ) )
-						$template .= '<strong class="text-center">'.$colors['colorTitle'][$i].'</strong>';
 					$template .= '<div class="row colorDefs"><div class="col-xs-12">';
+						if( isset( $colors['colorTitle'][$i] ) )
+							$template .= '<strong class="title">'.$colors['colorTitle'][$i].'</strong>';
 						$template .= '<p><strong>HEX:</strong>'.$colors['colorHex'][$i].'</p>';
 						$template .= '<p><strong>CMYK:</strong> ';
 							if( isset( $colors['colorC'][$i] ) ) $template .= $colors['colorC'][$i].'/';
