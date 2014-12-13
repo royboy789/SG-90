@@ -103,16 +103,16 @@ class sg_color_box implements StyleGuideSection {
 					$template .= '<div class="row colorDefs"><div class="col-xs-12">';
 						if( isset( $colors['colorTitle'][$i] ) )
 							$template .= '<strong class="title">'.$colors['colorTitle'][$i].'</strong>';
-						$template .= '<p><strong>HEX:</strong>'.$colors['colorHex'][$i].'</p>';
-						$template .= '<p><strong>CMYK:</strong> ';
-							if( isset( $colors['colorC'][$i] ) ) $template .= $colors['colorC'][$i].'/';
-							if( isset( $colors['colorM'][$i] ) ) $template .= $colors['colorM'][$i].'/';
-							if( isset( $colors['colorY'][$i] ) ) $template .= $colors['colorY'][$i].'/';
+						$template .= '<p>HEX: '.$colors['colorHex'][$i].'</p>';
+						$template .= '<p>CMYK: ';
+							if( isset( $colors['colorC'][$i] ) ) $template .= $colors['colorC'][$i].' / ';
+							if( isset( $colors['colorM'][$i] ) ) $template .= $colors['colorM'][$i].' / ';
+							if( isset( $colors['colorY'][$i] ) ) $template .= $colors['colorY'][$i].' / ';
 							if( isset( $colors['colorK'][$i] ) ) $template .= $colors['colorK'][$i];
 						$template .= '</p>';
-						$template .= '<p><strong>RGB:</strong> ';
-							if( isset( $colors['colorR'][$i] ) ) $template .= $colors['colorR'][$i].'/';
-							if( isset( $colors['colorG'][$i] ) ) $template .= $colors['colorG'][$i].'/';
+						$template .= '<p>RGB: ';
+							if( isset( $colors['colorR'][$i] ) ) $template .= $colors['colorR'][$i].' / ';
+							if( isset( $colors['colorG'][$i] ) ) $template .= $colors['colorG'][$i].' / ';
 							if( isset( $colors['colorB'][$i] ) ) $template .= $colors['colorB'][$i];
 						$template .= '</p>';
 					$template .= '</div></div>';
