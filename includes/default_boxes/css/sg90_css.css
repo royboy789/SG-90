@@ -1,12 +1,30 @@
-.colors > div { border-bottom: 1px solid #CCC; margin-bottom: 20px; padding-bottom: 10px; }
-.colors input,
-.colors span { display: inline-block; vertical-align: top; white-space: nowrap; width: 20%; }
+.sg_colors .sg_color {
+	border:1px solid #fafafa;
+	border-radius:5px;
+	margin:0 0 20px;
+	padding:0 0 10px 0
+}
 
-.colors span { margin:0 20px; white-space: normal; width: 20%; }
-.colors span input { display: block; margin: 0 0 10px 0; width: 100%; }
-
-a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
-
+.sg_colors .sg_color .colorBox {
+	display:block;
+	height:50px;
+	margin:10px 0 10px 0
+}
+.sg_colors .sg_color strong {
+	display:block;
+	font-size:1em;
+	margin-top:5px;
+	padding:0 10px
+}
+.sg_colors .sg_color p {
+	margin:0;
+	padding:0 10px
+}
+.sg_colors .sg_color .colorDefs strong {
+	display:inline-block;
+	margin:0 5px 0 0;
+	padding:0
+}
 
 .sg_colors { margin-bottom: 20px; margin-top: 20px; }
 .sg_color {
@@ -20,6 +38,14 @@ a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left:
 
 .textBoxWrapper,
 .imageViewWrapper { margin: 20px 0; }
+
+.textBoxWrapper:after {
+	clear: both;
+	content: '';
+	display: block;
+	height: 1px;
+	width: auto;
+}
 
 #sg90Wrapper .btn { border: none; }
 
