@@ -117,7 +117,7 @@ class sg_image_box implements StyleGuideSection {
 					$html .= '</div></div>';
 					
 					
-					if( $images[1] ):
+					if( isset( $images[1] ) ):
 						$html .= '<div class="row">';
 						$i = 0;
 						foreach( $images as $img ) {

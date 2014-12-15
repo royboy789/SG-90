@@ -1,7 +1,7 @@
 <?php
 
 global $SG_TEMPLATE_ENGINE;
-require('sg_template_builder.php');
+require(SG90_PLUGINPATH.'includes/admin/templateBuilder/sg_template_builder.php');
 
 class _SG_Template_Core {
 

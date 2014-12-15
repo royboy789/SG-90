@@ -1,0 +1,175 @@
+{
+	"title" : "Techtronix LLC",
+	"template" : "techtronix",
+	"screenshot": "http://arcctrl.com/sg-plugins/techtronix.jpg",
+	"sections": [
+		{
+			"type" : "images",
+			"title" : "Logos",
+			"layout" : "layout_showcase",
+			"modal" : "off",
+			"images" : [
+				"http://www.sg-90.dev/wp-content/uploads/2014/11/logo_techtronix-01.png"
+			]
+		},
+		{
+			"type" : "text",
+			"title" : "Introduction",
+			"content" : "<h2 style='text-align:center'>Introduction</h2><p style='text-align:center'>With Techtronix LLC's long standing history in the micro chip and technology hardware business our suggested rebrand starts with a logo that is reminiscent of technology company logos of the past but with a modern spin. Borrowing inspiration from the storied Techtronix LLC company history we combined design elements that are retro and modern.</p>"
+		},
+		{
+			"type" : "images",
+			"title" : "Two More Logos",
+			"layout" : "layout_two_col",
+			"modal" : "on",
+			"images" : [
+				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-02.png",
+				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-03.png"
+			]
+		},
+		{
+			"type" : "text",
+			"title" : "Influences Text",
+			"content" : "<h2 style='text-align:center'>Influences</h2><p style='text-align:center'>Shown here are just a few of our color scheme and logo design influences. To capture the full breadth of the Techtronix LLC brand we used a few of the existing colors from the old branding and then added a few contemporary colors inspired by colors that are trending in other modern technology company branding.</p>"	
+		},
+		{
+			"type" : "images",
+			"title" : "Influences",
+			"layout" : "layout_col",
+			"modal" : "on",
+			"images" : [
+				"http://arcctrl.com/wp-content/uploads/2014/12/techtronix_research-011.png",
+				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-02.png",
+				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-03.png",
+				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-04.png"
+			]
+		},
+		{
+			"type" : "text",
+			"title" : "Color Scheme Text",
+			"content" : "<h2 style='text-align:center'>Color Scheme</h2><p style='text-align:center'> For the Techtronix LLC color scheme we took a retro modern approach to the colors we selected. You will see the influence of colors from the past and present calling to mind the design inspiration of vintage computer electronics and colors you might see in modern computer chip manufacturing.</p>"	
+		},
+		{
+			"type" : "colors",
+			"title" : "Color Scheme",
+			"colors" : {
+				"colorTitle" : [
+					"Tue Blue",
+					"Aqua",
+					"Signal Yellow",
+					"Burnt Orange",
+					"Cleveland Brown",
+					"Opal White"
+				],
+				"colorHex" : [
+					"#0160b0",
+					"#60aaa5",
+					"#ffca42",
+					"#f05c33",
+					"#50483c",
+					"#fcf9f2"
+				],
+				"colorC" : [
+					"93",
+					"63",
+					"0",
+					"0",
+					"58",
+					"1"
+				],
+				"colorM" : [
+					"65",
+					"16",
+					"21",
+					"79",
+					"57",
+					"1"
+				],
+				"colorY" : [
+					"0",
+					"37",
+					"85",
+					"89",
+					"68",
+					"4"
+				],
+				"colorK" : [
+					"0",
+					"0",
+					"9",
+					"0",
+					"44",
+					"0"
+				],
+				"colorR" : [
+					"1",
+					"96",
+					"255",
+					"240",
+					"80",
+					"252"
+				],
+				"colorG" : [
+					"96",
+					"170",
+					"202",
+					"92",
+					"72",
+					"249"
+				],
+				"colorB" : [
+					"176",
+					"166",
+					"66",
+					"51",
+					"6",
+					"242"
+				]
+			}	
+		},
+		{
+			"type" : "text",
+			"title" : "Fonts Text",
+			"content" : "<h2 style='text-align:center'>Fonts</h2><p style='text-align:center'> To extend the brand identity of Techtronix LLC with our font choices, we selected a font pairing of two cool fonts that are both influenced by timeless fonts from the past. The first font we selected is \"Lusitana\" which is a modern Google font that has been designed in the tradition of Times New Roman. And the second (and third) font we chose is the Google font family of \"Roboto and Roboto Condensed.\" We think that these font choices are the best to compliment the logo design we have produced for your company.</p>"	
+		},
+		{
+			"type" : "fonts",
+			"title" : "Fonts",
+			"fonts" : {
+				"tag" : [
+					"h1",
+					"h2",
+					"h3",
+					"p"
+				],
+				"font" : [
+					"Lusitana",
+					"Roboto Condensed",
+					"Roboto",
+					"Roboto"
+				],
+				"variant" : [
+					"regular",
+					"700",
+					"500",
+					"300"
+				]
+			}
+		},
+		{
+			"type" : "text",
+			"title" : "Stationary Text",
+			"content" : "<h2s style='text-align:center'>Stationary</h2>"
+				
+		},
+		{
+			"type" : "images",
+			"title" : "Stationary",
+			"layout" : "layout_showcase",
+			"modal" : "on",
+			"images" : [
+				"http://arcctrl.com/wp-content/uploads/2014/12/techtronix_letterhead-2.jpg"
+			]
+		}
+	]	
+}

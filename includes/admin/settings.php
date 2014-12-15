@@ -144,7 +144,7 @@ class _sg_settings {
 		    echo '<table width="100%" cellpadding="20" cellspacing="0" border="0" id="bottomTable">';
 		    	echo '<thead>';
 		    		echo '<tr><td colspan="2" align="center"><div>';
-		    			include( 'text/sg90_top_column.php' );
+		    			include( SG90_PLUGINPATH.'includes/admin/text/sg90_top_column.php' );
 		    			echo '</div><div class="text-center"><a class="button button-primary" href="'.admin_url('post-new.php?post_type=style-guides').'">Create SG-90 Style Guide</a>';
 		    		echo '</div></td></tr>';
 		    		echo '<tr>';
@@ -155,10 +155,10 @@ class _sg_settings {
 		    	echo '<tbody>';		    		
 		    		echo '<tr>';
 		    			echo '<td valign="top" width="50%"><div>';
-		    				include( 'text/sg90_left_column.php' );
+		    				include( SG90_PLUGINPATH.'includes/admin/text/sg90_left_column.php' );
 		    			echo '</div></td>';
 		    			echo '<td valign="top"><div>';
-		    				include( 'text/sg90_right_column.php' );
+		    				include( SG90_PLUGINPATH.'includes/admin/text/sg90_right_column.php' );
 		    			echo '</div></td>';
 		    		echo '</tr>';
 		    	echo '</tbody>';
