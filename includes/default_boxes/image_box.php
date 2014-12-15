@@ -15,8 +15,8 @@ class sg_image_box implements StyleGuideSection {
 	}
 	
 	function modalScripts() {
-		wp_register_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), null, true );
-		wp_register_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
+		wp_enqueue_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
 	}
 	
 	function metaScripts() {
@@ -195,8 +195,6 @@ class sg_image_box implements StyleGuideSection {
 			$html .= '</div>';
 			return $html;
 		}
-		wp_print_scripts( '_sg_modalJS' );
-		wp_print_styles( '_sg_modalCSS' );
 	}
 
 }
