@@ -35,13 +35,12 @@
 		{
 			"type" : "images",
 			"title" : "Influences",
-			"layout" : "layout_col",
+			"layout" : "layout_showcase",
 			"modal" : "on",
 			"images" : [
 				"http://arcctrl.com/wp-content/uploads/2014/12/techtronix_research-011.png",
 				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-02.png",
 				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-03.png",
-				"http://arcctrl.com/wp-content/uploads/2014/12/logo_techtronix-04.png"
 			]
 		},
 		{
