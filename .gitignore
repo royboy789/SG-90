@@ -45,7 +45,5 @@ Temporary Items
 
 # Custom
 node_modules
-includes/bootstrap
-includes/css/sgStyles.less
-Gruntfile.js
-package.json
+sg90-marketing/
+sg90-marketing/*

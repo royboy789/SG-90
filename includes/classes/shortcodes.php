@@ -32,6 +32,7 @@ class styleGuideShortcodes {
 			
 			foreach( $sections[0] as $section ) {
 				$className = str_replace( '_new-sg-', '', $section['class'] );
+				if( !$SG_Factory->sg_instances[$className] ) { continue; }
 				$newMeta = new $SG_Factory->sg_instances[$className];
 					$newMeta->sg_admin_title = $section['title'];
 				$html .= $newMeta->view( $sg->ID );
