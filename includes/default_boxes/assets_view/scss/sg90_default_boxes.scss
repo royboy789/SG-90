@@ -1,0 +1,39 @@
+.sg_colors { margin-bottom: 20px; margin-top: 20px; }
+
+.sg_color {
+	margin: 0 0 20px;
+	padding: 0 0 10px 0;
+	
+	.colorBox {
+		display: block;
+		height:50px;
+		margin:0 0 10px 0;
+	}
+	 strong {
+		display: inline-block;
+		font-size:1em;
+		margin-top:5px;
+		margin-right: 10px;
+		&.title { display: block; margin: 5px 0; }
+	}
+	p {
+		margin:0;
+	}
+	
+}
+
+#sg90Wrapper .btn { border: none; }
+
+.imageViewWrapper {
+	.row {
+		padding-bottom: 20px;
+		padding-top: 10px;
+	}
+}
+
+/* MOBILE */
+@media only screen and (max-width: 992px) {
+	#sg90Wrapper * { text-align: center }
+	#sg90Wrapper img.img-responsive { display: inline-block; }
+	.imageViewWrapper .col-md-6 { padding: 20px 0; }
+}

@@ -9,7 +9,7 @@ class styleGuideShortcodes {
 	
 	/* Front End CSS */
 	public function viewScripts() {
-		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_css.css', '', '1.0', 'all' );
+		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/build_view/css/sg90_default_boxes.css', '', '1.0', 'all' );
 	}
 	
 	function sgShortcode( $atts ) {

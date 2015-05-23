@@ -15,13 +15,13 @@ class sg_image_box implements StyleGuideSection {
 	}
 	
 	function modalScripts() {
-		wp_enqueue_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), null, true );
-		wp_enqueue_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
+		wp_enqueue_script( '_sg_modalJS', SG90_PLUGINURL.'/includes/default_boxes/build_view/js/responsive_lightbox/jquery.lightbox.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_style( '_sg_modalCSS', SG90_PLUGINURL.'/includes/default_boxes/build_view/js/responsive_lightbox/jquery.lightbox.min.css', '', '1.0', 'all' );
 	}
 	
 	function metaScripts() {
 		wp_enqueue_media();
-		wp_enqueue_script( 'imageJS', SG90_PLUGINURL.'/includes/default_boxes/js/image_upload.js', array( 'jquery' ), '1.0', false );
+		wp_enqueue_script( 'imageJS', SG90_PLUGINURL.'/includes/default_boxes/build_admin/js/image_upload.js', array( 'jquery' ), '1.0', false );
 	}
 	
 	public function admin( $post ) {
@@ -55,7 +55,11 @@ class sg_image_box implements StyleGuideSection {
 				if( $layout === 'layout_col' ) { $html .= 'checked="checked"'; }
 			$html .= '> 4 Columns</label> &nbsp;&nbsp;&nbsp;';
 			
-			$html .= '<label for="layout_off"><input id="layout_off" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_two_col"';
+			$html .= '<label for="layout_three_col"><input id="layout_three_col" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_three_col"';
+				if( $layout === 'layout_three_col' ) { $html .= 'checked="checked"'; }
+			$html .= '> 3 Columns</label> &nbsp;&nbsp;&nbsp;';
+			
+			$html .= '<label for="layout_two_col"><input id="layout_two_col" type="radio" name="_sg_'.$this->sg_admin_title.'_media_image_layout" value="layout_two_col"';
 				if( $layout === 'layout_two_col' ) { $html .= 'checked="checked"'; }
 			$html .= '> 2 Columns</label> <br/><br/>';
 			
@@ -180,6 +184,29 @@ class sg_image_box implements StyleGuideSection {
 							}
 							if( !empty( $img ) ):
 								$html .= '<div class="col-md-6 text-center">';
+									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
+								$html .= '</div>';
+								if( $i%3 == 0 ) { $html .= '</div><div class="row">'; }
+							endif;
+							$i++;
+						}
+						$html .= '</div>';
+				break;
+				
+				case 'layout_three_col' :
+					$html .= '<div class="row">';
+						$i = 1;
+						foreach( $images as $img ) {
+							$imageID = get_attach_id( $img );
+							if( !is_null( $imageID ) ){
+								$imageMed = wp_get_attachment_image_src( $imageID, 'medium' );
+								$imageFull = wp_get_attachment_image_src( $imageID, 'full' );
+							} else {
+								$imageFull = array( $img );
+								$imageMed = array( $img );
+							}
+							if( !empty( $img ) ):
+								$html .= '<div class="col-md-4 text-center">';
 									$html .= '<img data-img-url="'.$imageFull[0].'" src="'.$imageMed[0].'" alt="SG-90 Style Guide Creator" />';
 								$html .= '</div>';
 								if( $i%3 == 0 ) { $html .= '</div><div class="row">'; }

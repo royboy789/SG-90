@@ -2,7 +2,8 @@
 
 class _sg_settings {
 
-	function __construct() {
+	function __init() {
+		
 		add_action( 'admin_menu', array( $this, 'styleGuideMenus' ) );
 		// SAVE
 		add_action( 'save_post', array( $this, 'metaSave' ) );
@@ -11,24 +12,37 @@ class _sg_settings {
 			add_action( 'wp_enqueue_scripts', array( $this, 'bootstrapCode' ) );
 		}
 		add_action( 'admin_enqueue_scripts' , array( $this, 'adminScripts' ) );
+		add_action( 'admin_enqueue_scripts' , array( $this, 'sg90Styles' ) );
 		
 	}
 
 	function styleGuideMenus() {
+		
 		add_menu_page( 'SG-90', 'SG-90', 'delete_pages', 'style-guide-main', array( $this, 'styleGuideMain' ), 'dashicons-welcome-write-blog', 90 );
 		add_submenu_page( 'style-guide-main', 'Add Style Guide', 'Add Style Guide', 'delete_pages', 'post-new.php?post_type=style-guides' );
 		add_submenu_page( 'style-guide-main', 'Style Guide Trash', 'Get Shortcodes', 'delete_pages', 'admin.php?page=style-guide-main' );
 		add_submenu_page( 'style-guide-main', 'SG-90 Settings', 'SG-90 Settings', 'delete_pages', 'sg-settings', array( $this, 'sgSettings' ) );
+		
 	}
 	
 	function adminScripts() {
+		
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
-		wp_enqueue_script( 'sg_adminJS', SG90_PLUGINURL.'/includes/js/sg_admin.js', array( 'jquery' ), null, false );
+		wp_enqueue_script( 'sg_adminJS', SG90_PLUGINURL.'/build/js/sg_admin.js', array( 'jquery' ), null, false );
+		
+	}
+	
+	function sg90Styles() {
+		
+		wp_enqueue_style( 'sg_default_boxes_css', SG90_PLUGINURL.'/includes/default_boxes/build_admin/css/sg90_default_boxes.css', array(), SG90_VERSION, 'all' );
+		
 	}
 	
 	function bootstrapCode() {
-		wp_enqueue_style( 'sg_bootstrap', SG90_PLUGINURL.'/includes/css/sgStyles.css', array( '_sg90_css' ), '1.0', 'all' );
+		
+		wp_enqueue_style( 'sg_bootstrap', SG90_PLUGINURL.'/build/css/sgStyles.css', array( '_sg90_css' ), SG90_VERSION, 'all' );
+		
 	}
 	
 	public function metaSave( $post_id ) {

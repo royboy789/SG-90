@@ -47,3 +47,6 @@ Temporary Items
 node_modules
 sg90-marketing/
 sg90-marketing/*
+plugin_build/*
+
+npm-debug.log

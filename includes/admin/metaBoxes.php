@@ -59,7 +59,7 @@ class _sg_meta_boxes {
 	
 	function styleGuideSections() {
 		global $SG_Factory;
-		echo '<label for="_new-title">Title:</label><br/><input name="_new-title" placeholder="Title" id="newBoxTitle" /><Br/><br/>';
+		echo '<label for="_new-title">Label:</label><br/><input name="_new-title" placeholder="Title" id="newBoxTitle" /><Br/><br/>';
 		foreach( $SG_Factory->sg_instances as $key => $value ) {
 			echo ' <button name="_new-sg-' . $key . '" class="button button-primary newBox" value="1">New ' . str_replace( '_', ' ', $key ) . '</button>'; 
 		}

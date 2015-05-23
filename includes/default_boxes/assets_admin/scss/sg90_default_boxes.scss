@@ -1,0 +1,41 @@
+.colors {
+	> div { border-bottom: 1px solid #CCC; margin-bottom: 20px; padding-bottom: 10px; }
+	input, span { display: inline-block; vertical-align: top; white-space: nowrap; width: 20%; }
+	input[type="radio"] { width: auto; }
+	label {
+		line-height: 1em;
+		vertical-align: top;
+	}
+	span { 
+		margin:0 20px; white-space: normal; width: 20%; 
+		input { display: block; margin: 0 0 10px 0; width: 100%; }
+	}
+	
+}
+
+a.removeColor { color: red; display: inline-block; font-size: 16px; margin-left: 20px; text-decoration: none;}
+
+
+#poststuff h3 { cursor: default !important; }
+
+.wp-core-ui .button-primary.newBox,
+.wp-core-ui .button-secondary.deleteAll { margin: 5px; margin-left: 0; min-width: 135px; }
+
+.imageContainer { margin-bottom: 10px; }
+.imageContainer label { display: inline-block; vertical-align: top; width: 550px; }
+a.removeImage { display: inline-block; margin-bottom: 7px; vertical-align: bottom; text-decoration: none; }
+
+
+
+
+.textBoxWrapper,
+.imageViewWrapper { margin: 20px 0; }
+
+.textBoxWrapper:after {
+	clear: both;
+	content: '';
+	display: block;
+	height: 1px;
+	width: auto;
+}
+

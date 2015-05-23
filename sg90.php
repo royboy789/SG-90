@@ -3,7 +3,7 @@
  * Plugin Name: SG-90 - Style Guide Creator
  * Plugin URI: http://arcctrl.com/plugins/sg-90
  * Description: This plugin will allow you to easily create style guide for your clients
- * Version: 1.2
+ * Version: 2.0.0
  * Author: ARC(CTRL)
  * Author URI: http://www.arcctrl.com
  * License: GPL2
@@ -12,6 +12,7 @@
 define( 'SG90_PLUGINPATH', plugin_dir_path( __FILE__ ) );
 define( 'SG90_PLUGINURL', plugins_url( '', __FILE__ ) );
 define( 'SG90_CORE', plugin_dir_path( __FILE__ ).'/includes/classes/core.php' );
+define( 'SG90_VERSION', '2.0.0' );
 
 /** CORE CLASS & FACTORY **/
 require(SG90_PLUGINPATH.'includes/classes/core.php');
@@ -35,28 +36,6 @@ require(SG90_PLUGINPATH.'includes/admin/activation.php');
 require(SG90_PLUGINPATH.'includes/admin/templateBuilder/sg_template_core.php');
 
 
-/** INIT CLASSES **/
-new sgInit();
-new sg90Activation();
-new _sg_settings();
-new _sg_meta_boxes();
-new styleGuideShortcodes();
-new pluginLicense();
-
-/** TEMPLATE CLASS **/
-new _SG_Template_Core();
-
-/** ADMIN CSS **/
-if( is_admin() )
-	add_action( 'admin_enqueue_scripts', 'adminScripts' );
-
-function adminScripts() {
-	global $post;
-	if( isset( $post ) && $post->post_type === 'style-guides' ):
-		wp_enqueue_script( 'sg90_admin_js', SG90_PLUGINURL.'/includes/default_boxes/js/sg90_admin_js.js', array( 'jquery' ), '1.0', true );
-		wp_enqueue_style( '_sg90_css', SG90_PLUGINURL.'/includes/default_boxes/css/sg90_admin_css.css', '', '1.0', 'all' );
-	endif;
-}
 
 
 /** INCLUDE ALL DEFAULT BOXES  **/
@@ -91,4 +70,29 @@ function ensure_loaded_first( array $plugins ) {
 }
 
 add_filter('pre_update_option_active_plugins', 'ensure_loaded_first');
+
+
+class sg90 {
+	
+	function init() {
+		
+		/** INIT CLASSES **/
+		new sgInit();
+		new sg90Activation();
+		$sg_settings = new _sg_settings();
+		$sg_settings->__init();
+		new _sg_meta_boxes();
+		new styleGuideShortcodes();
+		new pluginLicense();
+		
+		/** TEMPLATE CLASS **/
+		new _SG_Template_Core();
+		
+	}
+	
+}
+
+$sg90 = new sg90();
+$sg90->init();
+
 ?>
